@@ -5,6 +5,7 @@ export class Usuario {
     nombre: string;
     apellido: string;
     telefono: string;
+    avatar: String;
   
     constructor() {
       this.nombreUsuario = '';
@@ -13,6 +14,7 @@ export class Usuario {
       this.nombre = '';
       this.apellido = '';
       this.telefono = '';
+      this.avatar = '';
     }
   }
   

@@ -26,10 +26,22 @@
         <label for="username">Nombre de usuario</label>
         <input type="text" id="username" name="username" [(ngModel)]="registerData.username" required>
       </div>
+      
+      <div class="image-menu">
+        <div class="image-row" *ngFor="let row of imageRows">
+          <div class="image-option" *ngFor="let image of row" (click)="selectImage(image)" [class.selected]="isImageSelected(image)">
+            <img [src]="image" alt="Image Option">
+          </div>
+        </div>
+      </div>
+           
+
       <button type="submit" (click)="registrarUsuario()" class="btn btn-primary">Registrarse</button>
     </form>
     <div class="register-links">
       <a href="login" class="login-link">Iniciar sesión</a>
+      <br>
+      <br>
     </div>
   </div>
 </div>
