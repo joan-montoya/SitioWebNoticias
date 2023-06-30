@@ -23,4 +23,10 @@ export class UsuarioServiceService {
   login(usuario: any): Observable<any> {
     return this.http.post<any>(`${this.url}/login`, usuario);
   }
+
+  modificarUsuario(id: any, usuario: Usuario): Observable<Usuario> {
+    return this.http.put<any>(`${this.url}/${id}`, usuario);
+    
+  }
+  
 }

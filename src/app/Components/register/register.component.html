@@ -28,6 +28,7 @@
       </div>
       
       <div class="image-menu">
+        <label for="email">Selecciona avatar</label>
         <div class="image-row" *ngFor="let row of imageRows">
           <div class="image-option" *ngFor="let image of row" (click)="selectImage(image)" [class.selected]="isImageSelected(image)">
             <img [src]="image" alt="Image Option">

@@ -1,0 +1,54 @@
+<div class="cont">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <img class="card-img-top rounded-circle" src="{{avatar}}" alt="Avatar">
+          <div class="card-body">
+            <h5 class="card-title">{{nombreUsuario}}</h5>
+            <p class="card-text">Correo Electrónico: {{correoElectronico}}</p>
+            <p class="card-text">Teléfono: {{telefono}}</p>
+            <button class="btn btn-primary" (click)="mostrarFormulario()">Actualizar Perfil</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8" *ngIf="mostrarForm">
+        <div class="register-card">
+          <h2 class="register-title">Actualizar Perfil</h2>
+          <form>
+            <div class="form-group">
+              <label for="firstName">Nombre</label>
+              <input type="text" id="firstName" name="firstName" class="form-control" [(ngModel)]="registerData.firstName" required>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Apellidos</label>
+              <input type="text" id="lastName" name="lastName" class="form-control" [(ngModel)]="registerData.lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Nombre de usuario</label>
+                <input type="text" id="username" name="username" class="form-control" [(ngModel)]="registerData.username" required>
+              </div>
+            <div class="form-group">
+              <label for="phone">Teléfono</label>
+              <input type="text" id="phone" name="phone" class="form-control" [(ngModel)]="registerData.phone" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" class="form-control" [(ngModel)]="registerData.email" required>
+            </div>
+            <div class="image-menu">
+                <label for="email">Selecciona avatar</label>
+                <div class="image-row" *ngFor="let row of imageRows">
+                  <div class="image-option" *ngFor="let image of row" (click)="selectImage(image)" [class.selected]="isImageSelected(image)">
+                    <img [src]="image" alt="Image Option">
+                  </div>
+                </div>
+              </div> 
+            <button class="btn btn-primary" (click)="actualizarPerfil()">Guardar</button>
+            <button class="btn btn-secondary" (click)="cancelarActualizacion()">Cancelar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

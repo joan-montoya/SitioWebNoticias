@@ -1,0 +1,103 @@
+html, body {
+  height: 100%;
+}
+
+/* Ajusta los selectores según la estructura HTML */
+.cont-parent {
+  height: 100%;
+}
+.cont {
+  background-image: url('../../../assets/fondo.jpg');
+  background-size: cover; /* Ajusta el fondo para cubrir toda el área */
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 36rem;
+}
+
+
+.card {
+    width: 300px;
+    margin: 20px auto;
+    text-align: center;
+    background-color: rgba(215, 237, 250, 0.664);
+    backdrop-filter: blur(30px);
+  }
+  
+  .card-img-top {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 20px auto;
+  }
+  
+  .card-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .card-text {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .register-card {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(215, 237, 250, 0.664);
+    backdrop-filter: blur(30px);
+  }
+  
+  .register-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-control {
+    margin-bottom: 10px;
+  }
+  
+  .btn-primary {
+    margin-right: 10px;
+  }
+
+  .image-menu {
+    margin-bottom: 10px;
+  }
+  
+  .image-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .image-option {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+  }
+  
+  .image-option img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .image-option.selected {
+    border: 2px solid blue; /* Estilo de resaltado */
+  }
+  
+  .navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .previous-button,
+  .next-button {
+    padding: 5px 10px;
+  }
+  
+  

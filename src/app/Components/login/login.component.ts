@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioServiceService } from 'src/app/Services/usuario-service.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -16,8 +18,9 @@ export class LoginComponent implements OnInit {
   };
 
   usuario: any = {};
+  user: any = {};
 
-  constructor(private UsuarioServiceService: UsuarioServiceService) {}
+  constructor(private UsuarioServiceService: UsuarioServiceService, private router: Router) {}
 
   ngOnInit(): void {
   }
@@ -29,7 +32,9 @@ export class LoginComponent implements OnInit {
         if (respuesta.status) {
           // Inicio de sesión exitoso
           console.log('Inicio de sesión exitoso');
-          console.log('Usuario:', respuesta.usuario);
+          //guardamos el usuario
+          this.user = respuesta.usuario;
+          console.log('Usuario:', this.user);
           // Aquí puedes redirigir a otra página o realizar otras acciones
           Swal.fire({
             title: '¡Credenciales correctas!',
@@ -38,6 +43,19 @@ export class LoginComponent implements OnInit {
             confirmButtonText: 'Aceptar',
             timer: 3000,  // La alerta se cerrará automáticamente después de 3 segundos
             timerProgressBar: true,
+          }).then(() => {
+            // Almacena los valores individuales en el localStorage
+            localStorage.setItem('idUsuario', this.user.idUsuario.toString());
+            localStorage.setItem('nombreUsuario', this.user.nombreUsuario);
+            localStorage.setItem('contrasena', this.user.contrasena);
+            localStorage.setItem('correoElectronico', this.user.correoElectronico);
+            localStorage.setItem('nombre', this.user.nombre);
+            localStorage.setItem('apellido', this.user.apellido);
+            localStorage.setItem('telefono', this.user.telefono);
+            localStorage.setItem('avatar', this.user.avatar);
+            this.router.navigate(['/home']).then(() => {
+              window.location.reload();
+            });
           });
         } else {
           // Credenciales inválidas
@@ -46,7 +64,7 @@ export class LoginComponent implements OnInit {
             title: '¡Credenciales incorrectas!',
             text: 'Por favor, verifica tus credenciales e intenta nuevamente.',
             icon: 'error',
-            confirmButtonText: 'Aceptar',
+            confirmButtonText: 'Aceptar'
           });
         }
       },
