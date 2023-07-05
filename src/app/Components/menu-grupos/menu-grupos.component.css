@@ -1,0 +1,18 @@
+.card-container {
+    background-color: white;
+    padding: 20px;
+    top: 40px;
+  }
+  
+  .grupo-item {
+    background-color: rgba(0, 123, 255, 0.2);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .card-img-top {
+    width: 50%;
+    height: auto;
+    right: 30px;
+  }
+  

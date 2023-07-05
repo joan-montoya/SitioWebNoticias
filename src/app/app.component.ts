@@ -13,13 +13,20 @@ export class AppComponent {
   title = 'front_noticias';
   nombreUsuario: any;
   sesionIniciada: boolean = false;
+  showGruposOptions: boolean;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    this.showGruposOptions = false;
+  }
 
 
   ngOnInit() {
     this.nombreUsuario = localStorage.getItem('nombreUsuario');
     this.sesionIniciada = !!this.nombreUsuario; // Establecer el valor de sesionIniciada
+  }
+
+  toggleGrupos() {
+    this.showGruposOptions = !this.showGruposOptions;
   }
   
 

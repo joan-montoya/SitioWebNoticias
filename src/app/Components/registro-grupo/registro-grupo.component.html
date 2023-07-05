@@ -1,0 +1,25 @@
+<div class="container">
+  <br><br>
+    <h2>Registro de Grupo</h2>
+    <form (ngSubmit)="guardarGrupo()" #grupoForm="ngForm">
+      <div class="form-group">
+        <label for="nombreGrupo">Nombre del grupo:</label>
+        <input type="text" class="form-control" id="nombreGrupo" name="nombreGrupo" [(ngModel)]="grupo.nombre" required>
+      </div>
+      <div class="form-group">
+        <label for="descripcion">Descripción:</label>
+        <input type="text" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="grupo.descripcion" required>
+      </div>
+      <div class="form-group">
+        <label for="codigoAcceso">Código de Acceso:</label>
+        <input type="text" class="form-control" id="codigoAcceso" name="codigoAcceso" [(ngModel)]="grupo.codigoAcceso" required>
+      </div>
+      <div class="form-group">
+        <label for="imagen">Imagen:</label>
+        <input type="file" class="form-control-file" id="imagen" name="imagen" (change)="onFileSelected($event)" accept="image/*" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Guardar Grupo</button>
+    </form>
+  </div>
+  
+  

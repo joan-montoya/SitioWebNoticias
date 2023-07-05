@@ -21,6 +21,15 @@
         <a class="nav-link" routerLink="/home">Home</a>
       </li>
       <li class="nav-item" *ngIf="sesionIniciada">
+        <a class="nav-link" (click)="toggleGrupos()">{{ showGruposOptions ? 'Ocultar grupos' : 'Grupos' }}</a>
+      </li>
+      <li class="nav-item" id="add-grupo"  *ngIf="showGruposOptions">
+        <a class="nav-link" routerLink="/rgrupo">Add grupo</a>
+      </li>
+      <li class="nav-item" id="ver-grupos" *ngIf="showGruposOptions">
+        <a class="nav-link" routerLink="/menugrupo">Ver grupos</a>
+      </li>
+      <li class="nav-item" *ngIf="sesionIniciada">
         <a class="nav-link" routerLink="/menu-conf">Configuración</a>
       </li>
     </ul>
