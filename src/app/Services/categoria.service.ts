@@ -1,27 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Usuario } from '../Models/Usuario';
-import { Grupo } from '../Models/Grupo';
-
+import { Miembro } from '../Models/Miembro';
+import { Categoria } from '../Models/Categoria';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GruposService {
-
-  private url = 'http://localhost:4001/grupos';
+export class CategoriaService {
+  private url = 'http://localhost:4001/categorias';
 
   constructor(private http: HttpClient) { }
 
-  obtenerGrupos(): Observable<Grupo[]> {
-    return this.http.get<Grupo[]>(`${this.url}/dto`);
+  obtenerCategorias(): Observable<Categoria[]> {
+    return this.http.get<Categoria[]>(`${this.url}/dto`);
   }
 
-  guardarGrupo(grupoData: any): Observable<any> {
+  guardarCategoria(categoriaData: any): Observable<any> {
     const headers = this.getHeaders();
 
-    return this.http.post<any>(`${this.url}`, grupoData, { headers });
+    return this.http.post<any>(`${this.url}`, categoriaData, { headers });
   }
 
   private getHeaders(): HttpHeaders {
@@ -32,4 +30,3 @@ export class GruposService {
     return headers;
   }
 }
-

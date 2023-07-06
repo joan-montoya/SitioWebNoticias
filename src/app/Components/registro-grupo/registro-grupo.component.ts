@@ -41,7 +41,7 @@ export class RegistroGrupoComponent implements OnInit {
       this.GruposService.obtenerGrupos()
       .pipe(
         //obtnemos los grupos que el usuario  no creo
-        map(grupos => grupos.filter(grupo => grupo.administrador.idUsuario !== idUsuario)),
+        map(grupos => grupos.filter((grupo: any) => grupo.idAdministrador !== idUsuario)),
         map(gruposFiltrados => gruposFiltrados.map(grupo => {
           // Modificar el valor de cada grupo
           grupo.imagen = atob(grupo.imagen);
@@ -76,7 +76,7 @@ export class RegistroGrupoComponent implements OnInit {
           this.GruposService.obtenerGrupos()
           .pipe(
             //creamos un filtro para obtner los grupos que no fueron creados por este usuario
-            map(grupos => grupos.filter(grupo => grupo.administrador.idUsuario !== idUsuario)),
+            map(grupos => grupos.filter((grupo: any) => grupo.idAdministrador !== idUsuario)),
             map(gruposFiltrados => gruposFiltrados.map(grupo => {
               // Modificar el valor de cada grupo
               grupo.imagen = atob(grupo.imagen);

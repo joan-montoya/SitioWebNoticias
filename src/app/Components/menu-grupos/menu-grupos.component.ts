@@ -55,7 +55,7 @@ export class MenuGruposComponent implements OnInit {
         this.GruposService.obtenerGrupos()
         .pipe(
           //creamos un filtro para obtner los grupos que no fueron creados por este usuario
-          map(grupos => grupos.filter(grupo => grupo.administrador.idUsuario !== idUsuario)),
+          map(grupos => grupos.filter((grupo: any) => grupo.idAdministrador !== idUsuario)),
           map(gruposFiltrados => gruposFiltrados.map(grupo => {
             // Modificar el valor de cada grupo
             grupo.imagen = atob(grupo.imagen);
@@ -86,7 +86,7 @@ export class MenuGruposComponent implements OnInit {
    const idUsuario = parseInt(localStorage.getItem('idUsuario') || '0', 10); // Obtener el ID de usuario de localStorage y convertirlo a número
    this.GruposService.obtenerGrupos()
      .pipe(
-       map(grupos => grupos.filter(grupo => grupo.administrador.idUsuario === idUsuario)),
+       map(grupos => grupos.filter((grupo: any) => grupo.idAdministrador === idUsuario)),
        map(gruposFiltrados => gruposFiltrados.map(grupo => {
          // Modificar el valor de cada grupo
          grupo.imagen = atob(grupo.imagen);
@@ -105,7 +105,7 @@ export class MenuGruposComponent implements OnInit {
      );
      this.GruposService.obtenerGrupos()
      .pipe(
-       map(grupos => grupos.filter(grupo => grupo.administrador.idUsuario === idUsuario)),
+       map(grupos => grupos.filter((grupo: any) => grupo.idAdministrador === idUsuario)),
        map(gruposFiltrados => gruposFiltrados.map(grupo => {
          // Modificar el valor de cada grupo
          grupo.imagen = atob(grupo.imagen);
@@ -124,10 +124,11 @@ export class MenuGruposComponent implements OnInit {
      );
  }
 
- seleccionarGrupo(idGrupo: any, id: any) {
-  localStorage.setItem('grupoSeleccionado', idGrupo);
+ seleccionarGrupo(nombreGrupo: any, id: any) {
+  localStorage.setItem('grupoIngresado', nombreGrupo);
+  localStorage.setItem('idGrup', id);
   Swal.fire({
-    title: '¿Deseas unirte a este grupo?',
+    title: '¿Deseas acceder a este grupo?',
     showCancelButton: true,
     confirmButtonText: 'Aceptar',
     cancelButtonText: 'Rechazar',
@@ -135,41 +136,14 @@ export class MenuGruposComponent implements OnInit {
   }).then((result) => {
     if (result.isConfirmed) {
       // Lógica para unirse al grupo
-      //creacion de json para la insercion
-      const miembroData = {
-        usuario: {
-          idUsuario: parseInt(localStorage.getItem('idUsuario') || '0', 10)
-        },
-        grupo: {
-          idGrupo: idGrupo
-        },
-      };
-
-      //logica de insersion de miembro
-      this.MiembroService.guardarMiembro(miembroData).subscribe(
-        (response) => {
-          console.log('miembro insertado:', response);
-          Swal.fire({
-            icon: 'success',
-            title: 'te has unido a ',
-            html: `<img src="${this.grupos[id].imagen}" style="width: 50px; height: 50px; margin-top: 10px;">
-                   <div><strong>Nombre:</strong> ${this.grupos[id].nombre}</div>
-                   <div><strong>Descripción:</strong> ${this.grupos[id].descripcion}</div>`
-          });
-        },
-        (error) => {
-          console.error('Error al insertar el miembro:', error);
-          // Lógica de manejo de errores
-        }
-      );
-      
-      Swal.fire('¡Te has unido al grupo!', '', 'success');
+      window.location.href = '/tablerog'; // Redirige al usuario a la ubicación /tablerog
     } else if (result.dismiss === Swal.DismissReason.cancel) {
       // Lógica para rechazar el grupo
       // ...
       Swal.fire('Sigue buscando', '', 'info');
     }
   });
+  
 }
 
 }

@@ -13,6 +13,7 @@ import { MenuConfiguracionComponent } from './Components/menu-configuracion/menu
 import { HomeComponent } from './Components/home/home.component';
 import { RegistroGrupoComponent } from './Components/registro-grupo/registro-grupo.component';
 import { MenuGruposComponent } from './Components/menu-grupos/menu-grupos.component';
+import { TableroGruposComponent } from './Components/tablero-grupos/tablero-grupos.component';
 
 
 
@@ -27,6 +28,7 @@ import { MenuGruposComponent } from './Components/menu-grupos/menu-grupos.compon
     HomeComponent,
     RegistroGrupoComponent,
     MenuGruposComponent,
+    TableroGruposComponent,
   ],
   imports: [
     BrowserModule,

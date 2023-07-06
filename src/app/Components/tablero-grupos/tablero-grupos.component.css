@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Cambiado a flex-start */
+    height: 100vh;
+  }
+  
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1000px; /* Aumentado el valor de max-width */
+    margin-top: 20px; /* Agregado margen superior */
+  }
+  
+  .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    background-color: #4dfdef79;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add-card {
+    background-color: #0078D7;
+    color: #fff;
+  }
+  
+  .card-text {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
+  

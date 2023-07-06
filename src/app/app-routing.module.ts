@@ -7,6 +7,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { MenuConfiguracionComponent } from './Components/menu-configuracion/menu-configuracion.component';
 import { RegistroGrupoComponent } from './Components/registro-grupo/registro-grupo.component';
 import { MenuGruposComponent } from './Components/menu-grupos/menu-grupos.component';
+import { TableroGruposComponent } from './Components/tablero-grupos/tablero-grupos.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'menu-conf', component: MenuConfiguracionComponent},
   { path: 'rgrupo', component: RegistroGrupoComponent},
-  { path: 'menugrupo', component: MenuGruposComponent}
+  { path: 'menugrupo', component: MenuGruposComponent},
+  { path: 'tablerog', component: TableroGruposComponent},
 ];
 
 @NgModule({

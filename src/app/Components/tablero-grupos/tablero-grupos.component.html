@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="card-container">
+        <h1>Categorias de {{grupo}}</h1>
+      <div class="card add-card" (click)="showFormPopup()">
+        <span class="card-text">Agregar Categoría</span>
+      </div>
+      <div class="card" *ngFor="let categoria of categorias">
+        <span class="card-text">{{ categoria.nombreCategoria }}</span>
+      </div>
+    </div>
+  </div>
+  

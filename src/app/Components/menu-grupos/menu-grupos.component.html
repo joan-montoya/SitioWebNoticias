@@ -6,7 +6,7 @@
           <div class="card-body">
             <div class="row">
               <div *ngFor="let grupo of grupos; let i = index" class="col-md-6">
-                <div class="card grupo-item"  (click)="seleccionarGrupo(grupo.idGrupo,i)">
+                <div class="card grupo-item"  (click)="seleccionarGrupo(grupo.nombre,grupo.idGrupo)">
                   <img [src]="grupo.imagen" alt="Imagen" class="card-img-top">
                   <div class="card-body">
                     <h3 class="card-title">{{ grupo.nombre }}</h3>
@@ -35,7 +35,7 @@
                   <div class="card-body">
                     <h3 class="card-title">{{ grupo.nombre }}</h3>
                     <p class="card-text"><b>Descripcion</b> <br>{{ grupo.descripcion }}</p>
-                    <p class="card-text"><b>Administrador</b> <br>{{ grupo.administrador.nombreUsuario }}</p>
+                    <p class="card-text"><b>Administrador</b> <br>{{ grupo.nombreUsuario }}</p>
                   </div>
                 </div>
               </div>
