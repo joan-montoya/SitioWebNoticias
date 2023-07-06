@@ -6,6 +6,7 @@ export class Grupo {
       idUsuario: number;
     };
     imagen: string;
+  idGrupo: any;
   
     constructor() {
       this.descripcion = '';

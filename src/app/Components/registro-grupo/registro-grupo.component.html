@@ -21,5 +21,28 @@
       <button type="submit" class="btn btn-primary">Guardar Grupo</button>
     </form>
   </div>
-  
+  <br><br>
+  <div class="container2">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card card-container">
+          <div class="card-body">
+            <h1 style="align-items: center; text-align: center;">Unete a un grupo</h1>
+            <div class="row">
+              <div *ngFor="let grupo of grup; let i = index" class="col-md-6">
+                <div class="card grupo-item"  (click)="seleccionarGrupo(grupo.idGrupo,i)">
+                  <img [src]="grupo.imagen" alt="Imagen" class="card-img-top">
+                  <div class="card-body">
+                    <h3 class="card-title">{{ grupo.nombre }}</h3>
+                    <p class="card-text"><b>Descripcion</b> <br>{{ grupo.descripcion }}</p>
+                    <p class="card-text"><b>Administrador</b> <br>{{ grupo.administrador.nombreUsuario }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   

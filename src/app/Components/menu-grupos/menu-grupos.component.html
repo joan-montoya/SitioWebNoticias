@@ -2,14 +2,40 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="card card-container">
+          <h1 style="align-items: center; text-align: center;">Mis Grupos</h1>
           <div class="card-body">
             <div class="row">
-              <div *ngFor="let grupo of grupos" class="col-md-6">
-                <div class="card grupo-item">
+              <div *ngFor="let grupo of grupos; let i = index" class="col-md-6">
+                <div class="card grupo-item"  (click)="seleccionarGrupo(grupo.idGrupo,i)">
                   <img [src]="grupo.imagen" alt="Imagen" class="card-img-top">
                   <div class="card-body">
                     <h3 class="card-title">{{ grupo.nombre }}</h3>
                     <p class="card-text"><b>Descripcion</b> <br>{{ grupo.descripcion }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+<br>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card card-container">
+          <h1 style="align-items: center; text-align: center;">Grupos a los que pertenezco</h1>
+          <div class="card-body">
+            <div class="row">
+              <div *ngFor="let grupo of grup; let i = index" class="col-md-6">
+                <div class="card grupo-item"  (click)="seleccionarGrupo(grupo.idGrupo,i)">
+                  <img [src]="grupo.imagen" alt="Imagen" class="card-img-top">
+                  <div class="card-body">
+                    <h3 class="card-title">{{ grupo.nombre }}</h3>
+                    <p class="card-text"><b>Descripcion</b> <br>{{ grupo.descripcion }}</p>
+                    <p class="card-text"><b>Administrador</b> <br>{{ grupo.administrador.nombreUsuario }}</p>
                   </div>
                 </div>
               </div>

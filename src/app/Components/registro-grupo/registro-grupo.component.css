@@ -36,4 +36,29 @@
   .btn-primary:active {
     background-color: #004080;
   }
+  .card-container2 {
+    background-color: white;
+    padding: 20px;
+    top: 40px;
+  }
+  
+  .grupo-item {
+    background-color: rgba(0, 123, 255, 0.2);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .grupo-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    background-color: rgba(2, 81, 165, 0.2); 
+  }
+  
+  .card-img-top {
+    width: 50%;
+    height: auto;
+    right: 30px;
+  }
+  
   
