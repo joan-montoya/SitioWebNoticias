@@ -90,4 +90,31 @@ export class TableroGruposComponent implements OnInit {
       }
     );
   }
+
+  seleccionarCategoria(idCategoria: any, nombreCat: any) {
+    localStorage.setItem('catIngresado', idCategoria);
+    Swal.fire({
+      title: '¿Deseas acceder a este contenido de noticias sobre '+ nombreCat +" ?",
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Rechazar',
+      icon: 'question',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Lógica para unirse al grupo
+        window.location.href = '/pubnoticia'; // Redirige al usuario a la ubicación /tablerog
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // Lógica para rechazar el grupo
+        // ...
+        Swal.fire('Sigue buscando', '',);
+      }
+    });
+    
+  }
+
+  generarClaseAleatoria(): string {
+    const clases = ['card1', 'card2', 'card3', 'card4'];
+    const indiceAleatorio = Math.floor(Math.random() * clases.length);
+    return clases[indiceAleatorio];
+  }
 }

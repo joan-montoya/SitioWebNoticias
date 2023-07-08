@@ -1,0 +1,13 @@
+<div class="card-container2">
+    <h1 style="text-align: center;">Categorias de {{ grupo }}</h1>
+  </div>
+  <br>
+  <div class="container">
+    <br><br><br>
+      <div class="card-container">
+        <div [ngClass]="generarClaseAleatoria()" *ngFor="let categoria of categorias" (click)="seleccionarCategoria(categoria.idCategoria, categoria.nombreCategoria)">
+          <span class="card-text" >{{ categoria.nombreCategoria }}</span>
+        </div>
+      </div>
+    </div>
+    

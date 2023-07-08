@@ -1,0 +1,19 @@
+<div class="card-container2">
+  <h1 style="text-align: center;">Noticias sobre {{ nombreCat }}</h1>
+</div>
+<br>
+<div class="news-container">
+    <div class="news-container">
+        <div class="row justify-content-center">
+          <div class="col-8" *ngFor="let noticia of noticias">
+            <div class="card shadow mb-4">
+              <div class="card-body">
+                <h3 class="card-title">{{ noticia.titulo }}</h3>
+                <p class="card-text">{{ noticia.contenido }}</p>
+                <img [src]="noticia.imagen" class="card-img-top" alt="Imagen de la noticia" *ngIf="noticia.imagen">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

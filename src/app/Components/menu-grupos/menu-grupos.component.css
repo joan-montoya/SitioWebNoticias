@@ -1,25 +1,42 @@
-.card-container {
+.card{
     background-color: white;
     padding: 20px;
     top: 40px;
   }
   
   .grupo-item {
-    background-color: rgba(0, 123, 255, 0.2);
-    padding: 20px;
-    margin-bottom: 20px;
+    background-color: rgba(98, 247, 190, 0.26);
+    margin-block-end: 40px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
-  }
+    width: 20rem;
+    height: 20rem;
 
+  }
   .grupo-item:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
-    background-color: rgba(2, 81, 165, 0.2); 
+    background-color: rgba(98, 247, 190, 0.582);
   }
-  
+  .grupo-item2 {
+    background-color: rgba(252, 255, 96, 0.2);
+    margin-block-end: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    width: 20rem;
+    height: 24rem;
+  }
+  .grupo-item2:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    background-color: rgba(252, 255, 96, 0.37);
+  }
+
   .card-img-top {
     width: 50%;
-    height: auto;
+    height: 50%;
     right: 30px;
+    position: relative;
+    left: 20%;
   }
+
+  
   

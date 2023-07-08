@@ -39,6 +39,10 @@ export class AppComponent {
       });
     });
   }
+
+  goBack() {
+    history.back();
+  }
   
   
   

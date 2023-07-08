@@ -1,17 +1,16 @@
 <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card card-container">
-          <h1 style="align-items: center; text-align: center;">Mis Grupos</h1>
-          <div class="card-body">
-            <div class="row">
-              <div *ngFor="let grupo of grupos; let i = index" class="col-md-6">
-                <div class="card grupo-item"  (click)="seleccionarGrupo(grupo.nombre,grupo.idGrupo)">
-                  <img [src]="grupo.imagen" alt="Imagen" class="card-img-top">
-                  <div class="card-body">
-                    <h3 class="card-title">{{ grupo.nombre }}</h3>
-                    <p class="card-text"><b>Descripcion</b> <br>{{ grupo.descripcion }}</p>
-                  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-12"> 
+      <div class="card shadow mb-4">
+        <h1 style="align-items: center; text-align: center;">Mis Grupos</h1>
+        <div class="card-body">
+          <div class="row">
+            <div *ngFor="let grupo of grupos; let i = index" class="col-md-4">
+              <div class="card grupo-item" id="card2" (click)="seleccionarGrupo(grupo.nombre,grupo.idGrupo)">
+                <img [src]="grupo.imagen" alt="Imagen" class="card-img-top">
+                <div class="card-body">
+                  <h3 class="card-title">{{ grupo.nombre }}</h3>
+                  <p class="card-text"><b>Descripcion</b> <br>{{ grupo.descripcion }}</p>
                 </div>
               </div>
             </div>
@@ -20,17 +19,18 @@
       </div>
     </div>
   </div>
-  <br>
-<br>
+</div>
+
+
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card card-container">
+      <div class="col-md-12"> 
+        <div class="card shadow mb-4">
           <h1 style="align-items: center; text-align: center;">Grupos a los que pertenezco</h1>
           <div class="card-body">
             <div class="row">
-              <div *ngFor="let grupo of grup; let i = index" class="col-md-6">
-                <div class="card grupo-item"  (click)="seleccionarGrupo(grupo.idGrupo,i)">
+              <div *ngFor="let grupo of grup; let i = index" class="col-md-4">
+                <div class="card grupo-item2" id="card2" (click)="seleccionarGrupo2(grupo.nombre,grupo.idGrupo)">
                   <img [src]="grupo.imagen" alt="Imagen" class="card-img-top">
                   <div class="card-body">
                     <h3 class="card-title">{{ grupo.nombre }}</h3>

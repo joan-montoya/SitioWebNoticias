@@ -6,6 +6,11 @@
   </button>
   <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
     <ul class="navbar-nav">
+      <li class="nav-item back-button" (click)="goBack()" *ngIf="sesionIniciada">
+        <a class="nav-link buton">
+          <i class="fas fa-arrow-left"></i> Regresar
+        </a>
+      </li>
       <li class="nav-item" *ngIf="nombreUsuario">
         <span class="navbar-text">
           Bienvenido, <strong>{{ nombreUsuario }}</strong>

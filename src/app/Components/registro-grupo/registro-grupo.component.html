@@ -1,42 +1,45 @@
-<div class="container">
+<div class="container2">
   <br><br>
-    <h2>Registro de Grupo</h2>
-    <form (ngSubmit)="guardarGrupo()" #grupoForm="ngForm">
-      <div class="form-group">
-        <label for="nombreGrupo">Nombre del grupo:</label>
-        <input type="text" class="form-control" id="nombreGrupo" name="nombreGrupo" [(ngModel)]="grupo.nombre" required>
-      </div>
-      <div class="form-group">
-        <label for="descripcion">Descripción:</label>
-        <input type="text" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="grupo.descripcion" required>
-      </div>
-      <div class="form-group">
-        <label for="codigoAcceso">Código de Acceso:</label>
-        <input type="text" class="form-control" id="codigoAcceso" name="codigoAcceso" [(ngModel)]="grupo.codigoAcceso" required>
-      </div>
-      <div class="form-group">
-        <label for="imagen">Imagen:</label>
-        <input type="file" class="form-control-file" id="imagen" name="imagen" (change)="onFileSelected($event)" accept="image/*" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Guardar Grupo</button>
-    </form>
+  <div class="card shadow mb-4" id="formc">
+    <h2 style="text-align: center;">Registro de Grupo</h2>
+    <div class="card-body">
+      <form (ngSubmit)="guardarGrupo()" #grupoForm="ngForm">
+        <div class="form-group">
+          <label for="nombreGrupo">Nombre del grupo:</label>
+          <input type="text" class="form-control" id="nombreGrupo" name="nombreGrupo" [(ngModel)]="grupo.nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="descripcion">Descripción:</label>
+          <input type="text" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="grupo.descripcion" required>
+        </div>
+        <div class="form-group">
+          <label for="codigoAcceso">Código de Acceso:</label>
+          <input type="text" class="form-control" id="codigoAcceso" name="codigoAcceso" [(ngModel)]="grupo.codigoAcceso" required>
+        </div>
+        <div class="form-group">
+          <label for="imagen">Imagen:</label>
+          <input type="file" class="form-control-file" id="imagen" name="imagen" (change)="onFileSelected($event)" accept="image/*" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar Grupo</button>
+      </form>
+    </div>
   </div>
-  <br><br>
-  <div class="container2">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card card-container">
-          <div class="card-body">
-            <h1 style="align-items: center; text-align: center;">Unete a un grupo</h1>
-            <div class="row">
-              <div *ngFor="let grupo of grup; let i = index" class="col-md-6">
-                <div class="card grupo-item"  (click)="seleccionarGrupo(grupo.idGrupo,i)">
-                  <img [src]="grupo.imagen" alt="Imagen" class="card-img-top">
-                  <div class="card-body">
-                    <h3 class="card-title">{{ grupo.nombre }}</h3>
-                    <p class="card-text"><b>Descripcion</b> <br>{{ grupo.descripcion }}</p>
-                    <p class="card-text"><b>Administrador</b> <br>{{ grupo.nombreUsuario }}</p>
-                  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12"> 
+      <div class="card shadow mb-4">
+        <h1 style="align-items: center; text-align: center;">Unete a un grupo</h1>
+        <div class="card-body">
+          <div class="row">
+            <div *ngFor="let grupo of grup; let i = index" class="col-md-4">
+              <div class="card grupo-item2" id="card2" (click)="seleccionarGrupo(grupo.idGrupo,i)">
+                <img [src]="grupo.imagen" alt="Imagen" class="card-img-top">
+                <div class="card-body">
+                  <h3 class="card-title">{{ grupo.nombre }}</h3>
+                  <p class="card-text"><b>Descripcion</b> <br>{{ grupo.descripcion }}</p>
+                  <p class="card-text"><b>Administrador</b> <br>{{ grupo.nombreUsuario }}</p>
                 </div>
               </div>
             </div>
@@ -45,4 +48,8 @@
       </div>
     </div>
   </div>
+</div>
+
+
+  
   

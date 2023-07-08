@@ -191,11 +191,12 @@ export class RegistroGrupoComponent implements OnInit {
             console.log('miembro insertado:', response);
             Swal.fire({
               icon: 'success',
-              title: 'te has unido a ',
+              title: 'Te has unido a',
               html: `<img src="${this.grupos[id].imagen}" style="width: 50px; height: 50px; margin-top: 10px;">
                      <div><strong>Nombre:</strong> ${this.grupos[id].nombre}</div>
                      <div><strong>Descripción:</strong> ${this.grupos[id].descripcion}</div>`
             });
+            
           },
           (error) => {
             console.error('Error al insertar el miembro:', error);
@@ -203,7 +204,9 @@ export class RegistroGrupoComponent implements OnInit {
           }
         );
         
-        Swal.fire('¡Te has unido al grupo!', '', 'success');
+        Swal.fire('¡Te has unido al grupo!', '', 'success').then(() => {
+          window.location.reload(); // Recargar la página después de mostrar el mensaje de éxito
+        });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         // Lógica para rechazar el grupo
         // ...

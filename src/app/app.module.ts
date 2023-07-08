@@ -14,6 +14,9 @@ import { HomeComponent } from './Components/home/home.component';
 import { RegistroGrupoComponent } from './Components/registro-grupo/registro-grupo.component';
 import { MenuGruposComponent } from './Components/menu-grupos/menu-grupos.component';
 import { TableroGruposComponent } from './Components/tablero-grupos/tablero-grupos.component';
+import { PublicarNoticiaComponent } from './Components/publicar-noticia/publicar-noticia.component';
+import { NoticiasComponent } from './Components/noticias/noticias.component';
+import { TableroCatComponent } from './Components/tablero-cat/tablero-cat.component';
 
 
 
@@ -29,6 +32,9 @@ import { TableroGruposComponent } from './Components/tablero-grupos/tablero-grup
     RegistroGrupoComponent,
     MenuGruposComponent,
     TableroGruposComponent,
+    PublicarNoticiaComponent,
+    NoticiasComponent,
+    TableroCatComponent,
   ],
   imports: [
     BrowserModule,

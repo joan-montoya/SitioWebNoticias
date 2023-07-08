@@ -8,6 +8,9 @@ import { MenuConfiguracionComponent } from './Components/menu-configuracion/menu
 import { RegistroGrupoComponent } from './Components/registro-grupo/registro-grupo.component';
 import { MenuGruposComponent } from './Components/menu-grupos/menu-grupos.component';
 import { TableroGruposComponent } from './Components/tablero-grupos/tablero-grupos.component';
+import { PublicarNoticiaComponent } from './Components/publicar-noticia/publicar-noticia.component';
+import { NoticiasComponent } from './Components/noticias/noticias.component';
+import { TableroCatComponent } from './Components/tablero-cat/tablero-cat.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -18,6 +21,9 @@ const routes: Routes = [
   { path: 'rgrupo', component: RegistroGrupoComponent},
   { path: 'menugrupo', component: MenuGruposComponent},
   { path: 'tablerog', component: TableroGruposComponent},
+  { path: 'pubnoticia', component: PublicarNoticiaComponent},
+  { path: 'noticias', component: NoticiasComponent},
+  { path: 'tableroc', component: TableroCatComponent},
 ];
 
 @NgModule({

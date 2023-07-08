@@ -140,10 +140,31 @@ export class MenuGruposComponent implements OnInit {
     } else if (result.dismiss === Swal.DismissReason.cancel) {
       // Lógica para rechazar el grupo
       // ...
-      Swal.fire('Sigue buscando', '', 'info');
+        Swal.fire('Sigue buscando', '', 'info');
+      }
+    });
+  }
+
+  seleccionarGrupo2(nombreGrupo: any, id: any) {
+    localStorage.setItem('grupoIngresado', nombreGrupo);
+    localStorage.setItem('idGrup', id);
+    Swal.fire({
+      title: '¿Deseas acceder a este grupo?',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Rechazar',
+      icon: 'question',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Lógica para unirse al grupo
+        window.location.href = '/tableroc'; // Redirige al usuario a la ubicación /tablerog
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // Lógica para rechazar el grupo
+        // ...
+          Swal.fire('Sigue buscando', '', 'info');
+        }
+      });
     }
-  });
   
-}
 
 }
