@@ -122,6 +122,8 @@ export class RegistroGrupoComponent implements OnInit {
           html: `<img src="${atob(grupoData.imagen)}" style="width: 50px; height: 50px; margin-top: 10px;">
                  <div><strong>Nombre:</strong> ${grupoData.nombre}</div>
                  <div><strong>Descripción:</strong> ${grupoData.descripcion}</div>`
+        }).then(() => {
+          window.location.reload();
         });
       },
       (error) => {
@@ -217,5 +219,4 @@ export class RegistroGrupoComponent implements OnInit {
   
   
 }
-
 

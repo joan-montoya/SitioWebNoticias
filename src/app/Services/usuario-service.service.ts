@@ -25,8 +25,7 @@ export class UsuarioServiceService {
   }
 
   modificarUsuario(id: any, usuario: Usuario): Observable<Usuario> {
-    return this.http.put<any>(`${this.url}/${id}`, usuario);
-    
+    return this.http.put<any>(`${this.url}/${id}`, usuario); 
   }
   
 }

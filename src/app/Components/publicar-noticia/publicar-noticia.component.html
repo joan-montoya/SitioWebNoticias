@@ -17,18 +17,54 @@
       </div>
     </div>
     <div class="news-container">
-        <div class="news-container">
-            <div class="row justify-content-center">
-              <div class="col-8" *ngFor="let noticia of noticias">
-                <div class="card shadow mb-4">
-                  <div class="card-body">
-                    <h3 class="card-title">{{ noticia.titulo }}</h3>
-                    <p class="card-text">{{ noticia.contenido }}</p>
-                    <img [src]="noticia.imagen" class="card-img-top" alt="Imagen de la noticia" *ngIf="noticia.imagen">
+      <div class="row justify-content-center">
+        <div class="col-8" *ngFor="let noticia of noticias">
+          <div class="card shadow mb-4">
+            <div class="card-body">
+              <h3 class="card-title">{{ noticia.titulo }}</h3>
+              <p class="card-text">{{ noticia.contenido }}</p>
+              <img [src]="noticia.imagen" class="card-img-top" alt="Imagen de la noticia" *ngIf="noticia.imagen">
+              <br>
+              <!-- creacio de boton de reaccion, funcion para diferenciar el boton y poder eliminar o crear una reaccion -->
+              <img src="../../../assets/mg1.png" class="mg1" (click)="crearReaccion(noticia.idNoticia)"
+              *ngIf="!verificarReaccion(noticia.idNoticia)">
+              <img src="../../../assets/mg2.png" class="mg1"
+              *ngIf="verificarReaccion(noticia.idNoticia); let idReaccion"
+              (click)="eliminarReaccion(idReaccion)">
+              <!-- creacio de boton de favorito, funcion para diferenciar el boton y poder eliminar o crear una favorito -->
+              
+
+
+              <img src="../../../assets/fv1.png" class="fv1" (click)="crearFavorito(noticia.idNoticia)"
+              *ngIf="!verificarFavorito(noticia.idNoticia)">
+              <img src="../../../assets/fv3.png" class="fv1"
+              *ngIf="verificarFavorito(noticia.idNoticia); let idFavorito"
+              (click)="eliminarFavorito(idFavorito)">
+
+
+
+              <br><br>
+              <span (click)="toggleComentarios(noticia.idNoticia)" class="ver-comentarios-link"><b>Ver comentarios</b></span>
+              <div class="comment-container mt-4" *ngIf="mostrarComentarios && noticia.idNoticia === idnoticia">
+                <div *ngFor="let comentario of comentarios">
+                  <div class="comment" *ngIf="comentario.idNoticia == noticia.idNoticia">
+                    <div class="avatar">
+                      <img src="{{ comentario.avatar }}" alt="Avatar">
+                    </div>
+                    <div class="comment-content">
+                      <p><b>{{ comentario.nombreUsuario }}</b><br>
+                      {{ comentario.contenido }}</p>
+                    </div>
                   </div>
                 </div>
               </div>
+              <input class="form-control mb-2" rows="3" [(ngModel)]="nuevoComentario" placeholder="Escribe tu comentario"/>
+              <button class="btn btn-primary" (click)="agregarComentario(noticia.idNoticia)">Agregar comentario</button>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    
+    
   
