@@ -4,10 +4,16 @@ import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../../Models/Usuario';
 import { UsuarioServiceService } from '../../Services/usuario-service.service';
 import Swal from 'sweetalert2';
-
-
 import { AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-declare var $: any;
+
+interface RegisterData {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email: string;
+  password: string;
+  username: string;
+}
 
 @Component({
   selector: 'app-register',
@@ -20,15 +26,7 @@ export class RegisterComponent implements OnInit {
   @ViewChild('carousel', { static: true }) carousel!: ElementRef;
 
   usuarios: Usuario[] = [];
-  registerData = {
-    firstName: '',
-    lastName: '',
-    phone: '',
-    email: '',
-    password: '',
-    username: '',
-    avatar: ''
-  };
+  registerData: any;
 
   imageOptions = [
     '../../../assets/carousel/imagen1.jpg',
@@ -46,6 +44,15 @@ export class RegisterComponent implements OnInit {
 
   constructor(private UsuarioServiceService: UsuarioServiceService) {
     this.generateImageRows();
+    this.registerData = {
+      firstName: '',
+      lastName: '',
+      phone: '',
+      email: '',
+      password: '',
+      username: '',
+      avatar: ''
+    };
   }
 
   ngOnInit(): void {
@@ -62,6 +69,56 @@ export class RegisterComponent implements OnInit {
       telefono: this.registerData.phone,
       avatar: this.registerData.avatar
     };
+    // Validaciones
+    if (!this.registerData.firstName) {
+      Swal.fire('Error', 'El nombre es obligatorio', 'error');
+      return;
+    }
+
+    if (!this.registerData.lastName) {
+      Swal.fire('Error', 'Los apellidos son obligatorios', 'error');
+      return;
+    }
+
+    if (!this.registerData.phone) {
+      Swal.fire('Error', 'El teléfono es obligatorio', 'error');
+      return;
+    }
+
+    if (!this.isValidPhone(this.registerData.phone)) {
+      Swal.fire('Error', 'El teléfono debe contener solo números', 'error');
+      return;
+    }
+
+    if (!this.registerData.email) {
+      Swal.fire('Error', 'El correo electrónico es obligatorio', 'error');
+      return;
+    }
+
+    if (!this.validateEmail(this.registerData.email)) {
+      Swal.fire('Error', 'El correo electrónico no tiene un formato válido', 'error');
+      return;
+    }
+
+    if (!this.registerData.password) {
+      Swal.fire('Error', 'La contraseña es obligatoria', 'error');
+      return;
+    }
+
+    if (this.registerData.password.length < 8) {
+      Swal.fire('Error', 'La contraseña debe tener al menos 8 caracteres', 'error');
+      return;
+    }
+
+    if (!this.registerData.username) {
+      Swal.fire('Error', 'El nombre de usuario es obligatorio', 'error');
+      return;
+    }
+
+    // Si todas las validaciones pasan, procede con el registro
+    Swal.fire('Registro exitoso', 'Usuario registrado correctamente', 'success');
+    console.log('Registro exitoso:', this.registerData);
+    // Lógica para registrar al usuario
   
     // Validar si el correo electrónico ya está registrado
     const usuarioExistenteCorreo = this.usuarios.find(u => u.correoElectronico === usuario.correoElectronico);
@@ -76,15 +133,7 @@ export class RegisterComponent implements OnInit {
       Swal.fire('Error', 'El nombre de usuario ya está registrado.', 'error');
       return;
     }
-  
-    // Validar longitud mínima de la contraseña
-    if (usuario.contrasena.length < 8) {
-      Swal.fire('Error', 'La contraseña debe tener al menos 8 caracteres.', 'error');
-      return;
-    }
-  
-    console.log(usuario);
-  
+
     this.UsuarioServiceService.crearUsuario(usuario)
       .subscribe(
         nuevoUsuario => {
@@ -132,6 +181,16 @@ export class RegisterComponent implements OnInit {
   
   selectImage(image: string) {
     this.registerData.avatar = image;
+  }
+
+  validateEmail(email: string): boolean {
+    const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    return emailRegex.test(email);
+  }
+
+  isValidPhone(phone: string): boolean {
+    const phoneRegex = /^\d+$/;
+    return phoneRegex.test(phone);
   }
   
 }
