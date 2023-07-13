@@ -66,10 +66,8 @@ export class RegistroGrupoComponent implements OnInit {
       .subscribe(
         miembros => {
           this.miembros = miembros;
-          console.log(miembros)
           //creamos un filtro donde solo tendremos los miembros (registros de miembros) que pertenecen al usuario registrado
           this.miembroP = this.miembros.filter((miembro: any) => miembro.idUsuario === idUsuario);
-          console.log(this.miembroP)
           // Obtener los IDs de los grupos registrados en miembroP
           const idsGruposRegistrados = this.miembroP.map(obj => obj.idGrupo);
           // hacemos un llamado a grupos service para traer los grupos
@@ -102,12 +100,25 @@ export class RegistroGrupoComponent implements OnInit {
         }
       );
   }
+
+  //logica para generar codigo de acceso
+  generarCodigoAcceso(): string {
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let codigoAcceso = '';
+    
+    for (let i = 0; i < 6; i++) {
+      const indice = Math.floor(Math.random() * caracteres.length);
+      codigoAcceso += caracteres.charAt(indice);
+    }
+    
+    return codigoAcceso;
+  }
   
   guardarGrupo() {
     const grupoData = {
       descripcion: this.grupo.descripcion,
       nombre: this.grupo.nombre,
-      codigoAcceso: this.grupo.codigoAcceso,
+      codigoAcceso: this.generarCodigoAcceso(),
       administrador: {
         idUsuario: this.user.idUsuario
       },
@@ -168,16 +179,24 @@ export class RegistroGrupoComponent implements OnInit {
 
   seleccionarGrupo(idGrupo: any, id: any) {
     localStorage.setItem('grupoSeleccionado', idGrupo);
+    //obtencion del objeto de grupo seleccionado
+    this.grup = this.grup.filter((grupo: any) => grupo.idGrupo === idGrupo);
+    console.log(this.grup)
     Swal.fire({
       title: '¿Deseas unirte a este grupo?',
+      text: 'Ingrese el codigo de acceso',
+      input: 'text',
       showCancelButton: true,
       confirmButtonText: 'Aceptar',
       cancelButtonText: 'Rechazar',
+      allowOutsideClick: false,
       icon: 'question',
     }).then((result) => {
-      if (result.isConfirmed) {
+      if (result.isConfirmed && result.value) {
         // Lógica para unirse al grupo
-        //creacion de json para la insercion
+        const value: string = result.value;
+        if(value == this.grup[0].codigoAcceso){
+          //creacion de json para la insercion
         const miembroData = {
           usuario: {
             idUsuario: parseInt(localStorage.getItem('idUsuario') || '0', 10)
@@ -194,9 +213,9 @@ export class RegistroGrupoComponent implements OnInit {
             Swal.fire({
               icon: 'success',
               title: 'Te has unido a',
-              html: `<img src="${this.grupos[id].imagen}" style="width: 50px; height: 50px; margin-top: 10px;">
-                     <div><strong>Nombre:</strong> ${this.grupos[id].nombre}</div>
-                     <div><strong>Descripción:</strong> ${this.grupos[id].descripcion}</div>`
+              html: `<img src="${this.grupos[id]?.imagen}" style="width: 50px; height: 50px; margin-top: 10px;">
+                     <div><strong>Nombre:</strong> ${this.grupos[id]?.nombre}</div>
+                     <div><strong>Descripción:</strong> ${this.grupos[id]?.descripcion}</div>`
             });
             
           },
@@ -209,6 +228,12 @@ export class RegistroGrupoComponent implements OnInit {
         Swal.fire('¡Te has unido al grupo!', '', 'success').then(() => {
           window.location.reload(); // Recargar la página después de mostrar el mensaje de éxito
         });
+
+        }else{
+          Swal.fire('¡codigo de acceso incorrecto!', '', 'error').then(() => {
+            window.location.reload(); // Recargar la página después de mostrar el mensaje de éxito
+          });
+        }
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         // Lógica para rechazar el grupo
         // ...

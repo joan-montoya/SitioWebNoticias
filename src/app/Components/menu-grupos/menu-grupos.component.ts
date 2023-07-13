@@ -127,23 +127,60 @@ export class MenuGruposComponent implements OnInit {
  seleccionarGrupo(nombreGrupo: any, id: any) {
   localStorage.setItem('grupoIngresado', nombreGrupo);
   localStorage.setItem('idGrup', id);
+  
   Swal.fire({
     title: '¿Deseas acceder a este grupo?',
     showCancelButton: true,
     confirmButtonText: 'Aceptar',
     cancelButtonText: 'Rechazar',
     icon: 'question',
+    showCloseButton: true,
+    closeButtonAriaLabel: 'Cerrar',
+    customClass: {
+      confirmButton: 'btn btn-primary',
+      cancelButton: 'btn btn-secondary',
+      closeButton: 'btn btn-secondary',
+      actions: 'd-flex justify-content-between mt-4'
+    },
+    showLoaderOnConfirm: true,
+    buttonsStyling: true, // Desactivar estilos de botones predeterminados
+    preConfirm: () => {
+      return new Promise<void>((resolve) => {
+        resolve();
+      });
+    },
+    footer: `
+      <button class="btn btn-secondary custom-btn-color" id="configurarBtn">Configurar Grupo: ${nombreGrupo}</button>
+    `,
   }).then((result) => {
     if (result.isConfirmed) {
       // Lógica para unirse al grupo
-      window.location.href = '/tablerog'; // Redirige al usuario a la ubicación /tablerog
+      window.location.href = '/tablerog';
     } else if (result.dismiss === Swal.DismissReason.cancel) {
       // Lógica para rechazar el grupo
-      // ...
-        Swal.fire('Sigue buscando', '', 'info');
-      }
+      Swal.fire('Sigue buscando', '', 'info');
+    }
+  });
+  
+  // Agregar evento click al botón de Configurar Grupo
+  const configurarBtn = document.getElementById('configurarBtn');
+  if (configurarBtn) {
+    configurarBtn.style.backgroundColor = 'rgb(255, 226, 64)';
+    configurarBtn.style.color = 'black';
+    configurarBtn.style.cursor = 'pointer';
+    configurarBtn.addEventListener('mouseover', () => {
+      configurarBtn.style.backgroundColor = 'rgb(156, 139, 23)';
+    });
+    
+    configurarBtn.addEventListener('mouseout', () => {
+      configurarBtn.style.backgroundColor = 'rgb(255, 226, 64)';
+    });
+    configurarBtn.addEventListener('click', () => {
+      window.location.href = '/confgrupos';
     });
   }
+}
+
 
   seleccionarGrupo2(nombreGrupo: any, id: any) {
     localStorage.setItem('grupoIngresado', nombreGrupo);
@@ -168,3 +205,7 @@ export class MenuGruposComponent implements OnInit {
   
 
 }
+function rgb(arg0: number, arg1: number, arg2: number): string {
+  throw new Error('Function not implemented.');
+}
+

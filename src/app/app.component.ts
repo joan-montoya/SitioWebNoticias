@@ -31,7 +31,7 @@ export class AppComponent {
   
 
   cerrarSesion() {
-    localStorage.removeItem('nombreUsuario');
+    localStorage.clear();
     this.sesionIniciada = false;
     Swal.fire('Cierre de sesión', 'Has cerrado sesión exitosamente.', 'success').then(() => {
       this.router.navigate(['/login']).then(() => {

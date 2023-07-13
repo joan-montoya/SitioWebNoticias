@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './Components/login/login.component';
@@ -11,6 +11,7 @@ import { TableroGruposComponent } from './Components/tablero-grupos/tablero-grup
 import { PublicarNoticiaComponent } from './Components/publicar-noticia/publicar-noticia.component';
 import { NoticiasComponent } from './Components/noticias/noticias.component';
 import { TableroCatComponent } from './Components/tablero-cat/tablero-cat.component';
+import { ConfiguracionGrupoComponent } from './Components/configuracion-grupo/configuracion-grupo.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'pubnoticia', component: PublicarNoticiaComponent},
   { path: 'noticias', component: NoticiasComponent},
   { path: 'tableroc', component: TableroCatComponent},
+  { path: 'confgrupos', component: ConfiguracionGrupoComponent},
 ];
 
 @NgModule({

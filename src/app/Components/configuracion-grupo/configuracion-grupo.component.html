@@ -1,0 +1,43 @@
+<div class="cont">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <img class="card-img-top rounded-circle" src="{{grupoData.imagen}}" alt="Grupo Imagen">
+            <div class="card-body">
+              <h5 class="card-title">{{grupoData.nombre}}</h5>
+              <p class="card-text">Descripción: {{grupoData.descripcion}}</p>
+              <p class="card-text">Código de Acceso: {{grupoData.codigoAcceso}}</p>
+              <button class="btn btn-primary" (click)="mostrarFormulario()">Actualizar Grupo</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8" *ngIf="mostrarForm">
+          <div class="register-card">
+            <h2 class="register-title">Actualizar Grupo</h2>
+            <form>
+              <div class="form-group">
+                <label for="nombre">Nombre del Grupo:</label>
+                <input type="text" id="nombre" name="nombre" class="form-control" [(ngModel)]="grupoData.nombre" required>
+              </div>
+              <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" class="form-control" [(ngModel)]="grupoData.descripcion"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="codigoAcceso">Código de Acceso:</label>
+                <input type="text" id="codigoAcceso" name="codigoAcceso" class="form-control" [(ngModel)]="grupoData.codigoAcceso" required>
+              </div>
+              <div class="form-group">
+                <label for="imagen">Imagen:</label>
+                <input type="file" class="form-control-file" id="imagen" name="imagen" (change)="onFileSelected($event)" accept="image/*" required>
+              </div>
+              <button class="btn btn-primary" (click)="actualizarGrupo()">Guardar</button>
+              <button class="btn btn-secondary" (click)="cancelarActualizacion()">Cancelar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

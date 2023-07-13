@@ -80,6 +80,7 @@ export class MenuConfiguracionComponent implements OnInit {
       this.registerData.email = localStorage.getItem('correoElectronico') || '';
       this.registerData.password = localStorage.getItem('contrasena') || '';
       this.registerData.username = localStorage.getItem('nombreUsuario') || '';
+      this.registerData.avatar = localStorage.getItem('avatar') || '';
     
   }
 

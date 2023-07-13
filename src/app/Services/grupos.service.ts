@@ -24,6 +24,11 @@ export class GruposService {
     return this.http.post<any>(`${this.url}`, grupoData, { headers });
   }
 
+  modificarGrupo(id: any, grupo: any): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.put<any>(`${this.url}/${id}`, grupo, { headers }); 
+  }
+
   private getHeaders(): HttpHeaders {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
