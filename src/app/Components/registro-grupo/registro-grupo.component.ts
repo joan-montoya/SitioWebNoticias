@@ -20,6 +20,7 @@ export class RegistroGrupoComponent implements OnInit {
   miembroP: any[];
   gruposP: any[];
   miembros: any;
+  form = false;
 
   constructor(private GruposService: GruposService, private MiembroService: MiembroService) { 
      // Obtener el idUsuario del localStorage
@@ -237,9 +238,20 @@ export class RegistroGrupoComponent implements OnInit {
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         // Lógica para rechazar el grupo
         // ...
-        Swal.fire('Sigue buscando', '', 'info');
+        Swal.fire('Sigue buscando', '', 'info').then(() => {
+          window.location.reload(); // Recargar la página después de mostrar el mensaje de éxito
+        });
       }
     });
+  }
+
+  //boton para ocultar o mostrar el formulario del grupo
+  activar() {
+    this.form = true;
+  }
+
+  desactivar() {
+    this.form = false;
   }
   
   

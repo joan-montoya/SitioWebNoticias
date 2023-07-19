@@ -7,7 +7,7 @@ html, body {
     height: 100%;
   }
   .cont {
-    background-image: url('../../../assets/fondo.jpg');
+    /*background-image: url('../../../assets/fondo.jpg');*/
     background-size: cover; /* Ajusta el fondo para cubrir toda el área */
     background-position: center;
     background-attachment: fixed;
@@ -19,7 +19,7 @@ html, body {
       width: 300px;
       margin: 20px auto;
       text-align: center;
-      background-color: rgba(215, 237, 250, 0.664);
+      background-color: rgba(206, 206, 206, 0.664);
       backdrop-filter: blur(30px);
     }
     
@@ -46,7 +46,7 @@ html, body {
       padding: 20px;
       border: 1px solid #ccc;
       border-radius: 5px;
-      background-color: rgba(215, 237, 250, 0.664);
+      background-color: rgba(206, 206, 206, 0.664);
       backdrop-filter: blur(30px);
     }
     

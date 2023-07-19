@@ -1,9 +1,10 @@
-.card-container2 {
-    padding: 20px;
-    background-color: #f1f1f1;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+.card-container3 {
+  padding: 10px;
+  background-color: #20202070;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10.75px);
+}
   .comment {
     display: flex;
     align-items: flex-start;
@@ -33,7 +34,7 @@
     margin-top: 0px;
   }
   .ver-comentarios-link{
-    color: blue;
+    color: rgb(52, 137, 248);
     cursor: pointer;
     padding: 5px;
     padding-bottom: 5px;
@@ -50,6 +51,31 @@
     cursor: pointer;
     float: right;
   }
+
+  .btnf{
+    width: 25px;
+  }
+  /* Agrega una clase para limpiar los flotantes */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.mr-2 {
+  margin-right: 0.5rem; /* Ajusta el espaciado entre el input y el botón */
+}
 
   
   

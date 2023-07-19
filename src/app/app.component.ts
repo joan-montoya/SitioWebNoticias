@@ -14,9 +14,15 @@ export class AppComponent {
   nombreUsuario: any;
   sesionIniciada: boolean = false;
   showGruposOptions: boolean;
+  avatar: any;
+  firstName: any
+  lastName: any
 
   constructor(private router: Router) {
     this.showGruposOptions = false;
+    this.avatar = localStorage.getItem('avatar') || '';
+    this.firstName = localStorage.getItem('nombre') || '';
+    this.lastName = localStorage.getItem('apellido') || '';
   }
 
 

@@ -88,6 +88,8 @@ export class PublicarNoticiaComponent implements OnInit {
           Swal.fire({
             icon: 'success',
             title: 'Noticia insertado con éxito',
+          }).then(() => {
+            window.location.reload();
           });
         },
         (error) => {
@@ -159,6 +161,8 @@ export class PublicarNoticiaComponent implements OnInit {
         Swal.fire({
           icon: 'success',
           title: 'Comentario añadido con éxito',
+        }).then(() => {
+          window.location.reload();
         });
       },
       (error) => {
@@ -301,4 +305,13 @@ export class PublicarNoticiaComponent implements OnInit {
       }
     )
   }
+
+   // Función para obtener la cantidad de reacciones por idNoticia
+getCantidadReacciones(idNoticia: number): number {
+  // Filtrar las reacciones solo para la noticia actual (idNoticia)
+  const reaccionesFiltradas = this.reacciones.filter((reaccion: any) => reaccion.idNoticia === idNoticia);
+
+  // Devolvemos la cantidad de reacciones para esa noticia.
+  return reaccionesFiltradas.length;
+}
 }

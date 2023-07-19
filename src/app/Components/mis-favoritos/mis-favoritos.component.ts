@@ -6,11 +6,11 @@ import { ReaccionService } from 'src/app/Services/reaccion.service';
 import { FavoritoService } from 'src/app/Services/favorito.service';
 
 @Component({
-  selector: 'app-noticias',
-  templateUrl: './noticias.component.html',
-  styleUrls: ['./noticias.component.css']
+  selector: 'app-mis-favoritos',
+  templateUrl: './mis-favoritos.component.html',
+  styleUrls: ['./mis-favoritos.component.css']
 })
-export class NoticiasComponent implements OnInit {
+export class MisFavoritosComponent implements OnInit {
 
   noticias: any;
   idCategoria: any;
@@ -44,12 +44,12 @@ export class NoticiasComponent implements OnInit {
   }
 
   obtnerNoticias() {
-    //logica para la obtencion de categorias
+    //logica para la obtencion de noticias
     this.NoticiasService.obtenerNoticias()
     .subscribe(
       noticias => {
         //creamos un filtro donde solo tendremos los miembros (registros de miembros) que pertenecen al usuario registrado
-        this.noticias = noticias.filter((noticia: any) => noticia.idCategoria == this.idCategoria);
+        this.noticias = noticias
         this.noticias = this.noticias.map((noticia: any) => {
           // Decodificar el valor de la imagen utilizando atob()
           noticia.imagen = atob(noticia.imagen);
@@ -199,6 +199,19 @@ export class NoticiasComponent implements OnInit {
     }
     return false; // No se encontró ningún favorito o la variable this.favoritos no está definida
   }
+
+  //obtencion de favoritos por idNoticia y idsuario
+  verificarNoticia(idNoticia: number): number | false {
+    const idUsuario = localStorage.getItem('idUsuario');
+  
+    if (this.favoritos && this.favoritos.length > 0) {
+      const favoritoEncontrado = this.favoritos.find((favorito: any) => favorito.idUsuario == idUsuario && favorito.idNoticia === idNoticia);
+      if (favoritoEncontrado) {
+        return favoritoEncontrado.idFavorito; // Devuelve el ID del favorito encontrado
+      }
+    }
+    return false; // No se encontró ningún favorito o la variable this.favoritos no está definida
+  }
   
   //insercion de reacciones
   crearFavorito (idNoticia: any) {
@@ -235,7 +248,7 @@ export class NoticiasComponent implements OnInit {
     )
   }
 
-  // Función para obtener la cantidad de reacciones por idNoticia
+   // Función para obtener la cantidad de reacciones por idNoticia
 getCantidadReacciones(idNoticia: number): number {
   // Filtrar las reacciones solo para la noticia actual (idNoticia)
   const reaccionesFiltradas = this.reacciones.filter((reaccion: any) => reaccion.idNoticia === idNoticia);
@@ -243,6 +256,5 @@ getCantidadReacciones(idNoticia: number): number {
   // Devolvemos la cantidad de reacciones para esa noticia.
   return reaccionesFiltradas.length;
 }
-
 }
 

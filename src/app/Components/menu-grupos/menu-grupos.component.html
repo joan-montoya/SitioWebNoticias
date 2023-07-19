@@ -1,16 +1,19 @@
+<br>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-12"> 
-      <div class="card shadow mb-4">
+      <div class="card shadow mb-4" id="cardF">
         <h1 style="align-items: center; text-align: center;">Mis Grupos</h1>
         <div class="card-body">
-          <div class="row">
-            <div *ngFor="let grupo of grupos; let i = index" class="col-md-4">
-              <div class="card grupo-item" id="card2" (click)="seleccionarGrupo(grupo.nombre,grupo.idGrupo)">
-                <img [src]="grupo.imagen" alt="Imagen" class="card-img-top">
-                <div class="card-body">
-                  <h3 class="card-title">{{ grupo.nombre }}</h3>
-                  <p class="card-text"><b>Descripcion</b> <br>{{ grupo.descripcion }}</p>
+          <div class="horizontal-scroll">
+            <div class="grupo-container">
+              <div *ngFor="let grupo of grupos; let i = index" class="grupo-item">
+                <div class="card" (click)="seleccionarGrupo(grupo.nombre, grupo.idGrupo)">
+                  <img [src]="grupo.imagen" class="card-img-background">
+                  <div class="overlay">
+                      <h3 class="card-title excepcion">{{ grupo.nombre }}</h3>
+                        <p class="excepcion"><b>Descripción</b> {{ grupo.descripcion }}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -25,17 +28,19 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-12"> 
-        <div class="card shadow mb-4">
+        <div class="card shadow mb-4" id="cardF2">
           <h1 style="align-items: center; text-align: center;">Grupos a los que pertenezco</h1>
           <div class="card-body">
-            <div class="row">
-              <div *ngFor="let grupo of grup; let i = index" class="col-md-4">
-                <div class="card grupo-item2" id="card2" (click)="seleccionarGrupo2(grupo.nombre,grupo.idGrupo)">
-                  <img [src]="grupo.imagen" alt="Imagen" class="card-img-top">
-                  <div class="card-body">
-                    <h3 class="card-title">{{ grupo.nombre }}</h3>
-                    <p class="card-text"><b>Descripcion</b> <br>{{ grupo.descripcion }}</p>
-                    <p class="card-text"><b>Administrador</b> <br>{{ grupo.nombreUsuario }}</p>
+            <div class="horizontal-scroll">
+              <div class="grupo-container">
+                <div *ngFor="let grupo of grup; let i = index" class="grupo-item">
+                  <div class="card grupo-item2" id="card2" (click)="seleccionarGrupo2(grupo.nombre,grupo.idGrupo)">
+                    <img [src]="grupo.imagen" alt="Imagen"  class="card-img-background">
+                    <div class="overlay">
+                      <h3 class="card-title excepcion">{{ grupo.nombre }}</h3>
+                      <p class="card-text excepcion"><b>Descripcion</b> <br>{{ grupo.descripcion }}</p>
+                      <p class="card-text excepcion"><b>Administrador</b> <br>{{ grupo.nombreUsuario }}</p>
+                    </div>
                   </div>
                 </div>
               </div>

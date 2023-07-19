@@ -1,6 +1,6 @@
 <div class="container">
     <h1 class="text-center">Noticias</h1>
-    <div class="card shadow mb-4">
+    <div class="card shadow mb-4 forms">
       <div class="card-body">
         <form (ngSubmit)="publicarNoticia()">
           <div class="form-group">
@@ -25,25 +25,24 @@
               <p class="card-text">{{ noticia.contenido }}</p>
               <img [src]="noticia.imagen" class="card-img-top" alt="Imagen de la noticia" *ngIf="noticia.imagen">
               <br>
-              <!-- creacio de boton de reaccion, funcion para diferenciar el boton y poder eliminar o crear una reaccion -->
-              <img src="../../../assets/mg1.png" class="mg1" (click)="crearReaccion(noticia.idNoticia)"
-              *ngIf="!verificarReaccion(noticia.idNoticia)">
-              <img src="../../../assets/mg2.png" class="mg1"
-              *ngIf="verificarReaccion(noticia.idNoticia); let idReaccion"
-              (click)="eliminarReaccion(idReaccion)">
-              <!-- creacio de boton de favorito, funcion para diferenciar el boton y poder eliminar o crear una favorito -->
-              
-
-
+              <!-- creación de botón de reacción, función para diferenciar el botón y poder eliminar o crear una reacción -->
+              <div style="display: inline-block;">
+                <img src="../../../assets/mg1.png" class="mg1" (click)="crearReaccion(noticia.idNoticia)"
+                  *ngIf="!verificarReaccion(noticia.idNoticia)">
+                <p style="display: inline; color: black;" *ngIf="!verificarReaccion(noticia.idNoticia)"><b> {{ getCantidadReacciones(noticia.idNoticia) }}</b> </p>
+    
+                <img src="../../../assets/mg2.png" class="mg1"
+                  *ngIf="verificarReaccion(noticia.idNoticia); let idReaccion" (click)="eliminarReaccion(idReaccion)">
+                <p style="display: inline; color: rgb(184, 3, 3);" *ngIf="verificarReaccion(noticia.idNoticia)"><b> {{ getCantidadReacciones(noticia.idNoticia) }}</b> </p>
+              </div>
+    
+              <!-- creación de botón de favorito, función para diferenciar el botón y poder eliminar o crear un favorito -->
               <img src="../../../assets/fv1.png" class="fv1" (click)="crearFavorito(noticia.idNoticia)"
-              *ngIf="!verificarFavorito(noticia.idNoticia)">
+                *ngIf="!verificarFavorito(noticia.idNoticia)">
               <img src="../../../assets/fv3.png" class="fv1"
-              *ngIf="verificarFavorito(noticia.idNoticia); let idFavorito"
-              (click)="eliminarFavorito(idFavorito)">
-
-
-
-              <br><br>
+                *ngIf="verificarFavorito(noticia.idNoticia); let idFavorito" (click)="eliminarFavorito(idFavorito)">
+    
+                <br>
               <span (click)="toggleComentarios(noticia.idNoticia)" class="ver-comentarios-link"><b>Ver comentarios</b></span>
               <div class="comment-container mt-4" *ngIf="mostrarComentarios && noticia.idNoticia === idnoticia">
                 <div *ngFor="let comentario of comentarios">
@@ -53,13 +52,17 @@
                     </div>
                     <div class="comment-content">
                       <p><b>{{ comentario.nombreUsuario }}</b><br>
-                      {{ comentario.contenido }}</p>
+                        {{ comentario.contenido }}</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <input class="form-control mb-2" rows="3" [(ngModel)]="nuevoComentario" placeholder="Escribe tu comentario"/>
-              <button class="btn btn-primary" (click)="agregarComentario(noticia.idNoticia)">Agregar comentario</button>
+              <div class="d-flex align-items-center">
+                <input class="form-control flex-grow-1 mr-2" [(ngModel)]="nuevoComentario" placeholder="Escribe tu comentario" />
+                <button class="btn btn-primary" (click)="agregarComentario(noticia.idNoticia)">
+                  <img src="../../../assets/flecha.png" class="btnf">
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -1,0 +1,81 @@
+.card-container3 {
+  padding: 10px;
+  background-color: #20202070;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10.75px);
+}
+.comment {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1px;
+  border-top: 1px #ccc;
+  margin-top: 1px;
+}
+
+.avatar img {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-content h4 {
+  margin: 0;
+}
+
+.comment-content p {
+  margin-top: 0px;
+}
+.ver-comentarios-link{
+  color: rgb(52, 137, 248);
+  cursor: pointer;
+  padding: 5px;
+  padding-bottom: 5px;
+}
+
+.mg1{
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+.fv1{
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  float: right;
+}
+
+.btnf{
+  width: 25px;
+}
+/* Agrega una clase para limpiar los flotantes */
+.clearfix::after {
+content: "";
+display: table;
+clear: both;
+}
+.d-flex {
+display: flex;
+}
+
+.align-items-center {
+align-items: center;
+}
+
+.flex-grow-1 {
+flex-grow: 1;
+}
+
+.mr-2 {
+margin-right: 0.5rem; /* Ajusta el espaciado entre el input y el botón */
+}
+
+
+

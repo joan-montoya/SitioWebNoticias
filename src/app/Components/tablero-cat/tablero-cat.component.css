@@ -1,27 +1,24 @@
 .container {
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Cambiado a flex-start */
-    height: 100vh;
   }
   
   .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
-    max-width: 1000px; /* Aumentado el valor de max-width */
     margin-top: 10px; /* Agregado margen superior */
+    max-width: 100%;
+    overflow: hidden;
   }
-  .card-container2 {
-    padding: 20px;
-    background-color: #f1f1f1;
+  .card-container3 {
+    padding: 10px;
+    background-color: #20202070;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.75px);
   }
   
   
   .card {
-    display: flex;
+    display: inline-block;
     justify-content: center;
     align-items: center;
     height: 130px;
@@ -30,8 +27,14 @@
     cursor: pointer;
   }
 
+  .cardf {
+    background-color: white;
+    padding: 18px;
+    border-radius: 10px;
+  }
+
   .card1 {
-    display: flex;
+    display: inline-block;
     justify-content: center;
     align-items: center;
     height: 130px;
@@ -41,7 +44,7 @@
   }
 
   .card2 {
-    display: flex;
+    display: inline-block;
     justify-content: center;
     align-items: center;
     height: 130px;
@@ -51,7 +54,7 @@
   }
 
   .card3 {
-    display: flex;
+    display: inline-block;
     justify-content: center;
     align-items: center;
     height: 130px;
@@ -61,7 +64,7 @@
   }
 
   .card4 {
-    display: flex;
+    display: inline-block;
     justify-content: center;
     align-items: center;
     height: 130px;
@@ -81,4 +84,117 @@
     font-weight: bold;
     text-align: center;
   }
+
+  .horizontal-scroll {
+    display: flex; /* Alinea las tarjetas en una fila */
+    overflow-x: auto; /* Habilita el scroll horizontal */
+    scrollbar-width: none; /* Oculta la barra de scroll del navegador */
+    -ms-overflow-style: none; /* Oculta la barra de scroll en Internet Explorer/Edge */
+    padding: 20px;
+    backdrop-filter: blur(10.75px);
+    background-color: #010e1a5e;
+    border-radius: 25px;
+  }
+  
+  
+  /* Estilo para cada tarjeta de categoría */
+  .horizontal-scroll > div {
+    min-width: 200px; /* Tamaño mínimo de cada tarjeta */
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-right: 10px; /* Espacio entre las tarjetas */
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .card-container2 {
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .comment {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1px;
+    border-top: 1px #ccc;
+    margin-top: 1px;
+  }
+  
+  .avatar img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .comment-content {
+    flex: 1;
+  }
+  
+  .comment-content h4 {
+    margin: 0;
+  }
+  
+  .comment-content p {
+    margin-top: 0px;
+  }
+  .ver-comentarios-link{
+    color: rgb(52, 137, 248);
+    cursor: pointer;
+    padding: 5px;
+    padding-bottom: 5px;
+  }
+
+  .mg1{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
+  .fv1{
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    float: right;
+  }
+
+  .btnf{
+    width: 25px;
+  }
+  /* Agrega una clase para limpiar los flotantes */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.mr-2 {
+  margin-right: 0.5rem; /* Ajusta el espaciado entre el input y el botón */
+}
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
   

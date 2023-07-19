@@ -1,48 +1,91 @@
-.card{
-    background-color: white;
-    padding: 20px;
-    top: 40px;
-  }
-  
-  .grupo-item {
-    background-color: rgba(98, 247, 190, 0.26);
-    margin-block-end: 40px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-    width: 20rem;
-    height: 20rem;
-
-  }
-  .grupo-item:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
-    background-color: rgba(98, 247, 190, 0.582);
-  }
-  .grupo-item2 {
-    background-color: rgba(252, 255, 96, 0.2);
-    margin-block-end: 40px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-    width: 20rem;
-    height: 24rem;
-  }
-  .grupo-item2:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
-    background-color: rgba(252, 255, 96, 0.37);
-  }
-
-  .card-img-top {
-    width: 50%;
-    height: 50%;
-    right: 30px;
-    position: relative;
-    left: 20%;
-  }
 
   .custom-btn-color {
     background-color: rgb(255, 226, 64);
     color: white;
   }
+  .horizontal-scroll {
+    overflow-x: auto; /* Habilita el desplazamiento horizontal */
+    white-space: nowrap; /* Evita que los elementos se desplacen a la siguiente línea */
+    width: 100%;
+    padding: 40px;
+  }
   
+  #cardF{
+    backdrop-filter: blur(8.75px);
+    background-color: #fcfcfca6;
+  }
 
-  
-  
+  #cardF2{
+    backdrop-filter: blur(8.75px);
+    background-color: #f4cff5a6;
+  }
+
+/* Estilo para cada tarjeta de grupo */
+.grupo-item {
+  display: inline-block; /* Permite que los elementos estén en una fila horizontal */
+  margin-right: 40px;
+  position: relative;
+  width: 300px; /* Tamaño fijo de las tarjetas */
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 30px;
+}
+
+
+/* Estilo para la imagen de fondo */
+.card-img-background {
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+}
+
+/*configuracion para que el texto no salga del recuadro*/
+.excepcion {
+  white-space: normal; /* Anula el white-space: nowrap; heredado */
+}
+
+/* Estilo para el overlay */
+.overlay {
+  position: absolute;
+  left: 0;
+  bottom: 15px;
+  width: 100%;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.548);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+  box-sizing: border-box;
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  transition: opacity 0.3s;
+  backdrop-filter: blur(6.75px);
+}
+
+/* Mostrar el overlay al hacer hover */
+.grupo-item:hover .overlay {
+  opacity: 1;
+}
+
+/*estilos dobre hover*/
+.grupo-item:hover {
+  box-shadow: 0 12px 12px rgba(0, 0, 0, 0.781);
+  transform: scale(1.10);
+  transition: 250ms;
+}
+.grupo-item:not(:hover) {
+  transition: transform 600ms; /* Transición más lenta solo para la propiedad transform al quitar el hover */
+  transform: scale(1); /* Volver al estado original sin retraso */
+}
+
+/* Estilo para el título y descripción en el overlay */
+.card-title {
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+

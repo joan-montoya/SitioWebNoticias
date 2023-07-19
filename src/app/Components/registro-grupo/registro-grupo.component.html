@@ -1,5 +1,40 @@
-<div class="container2">
-  <br><br>
+<br> 
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12"> 
+      <div class="card shadow mb-4" id="cardF">
+        <br>
+        <h1 style="align-items: center; text-align: center;">Unete a un grupo</h1>
+        <div class="card-body" >
+          <div class="horizontal-scroll">
+            <div class="grupo-container">
+              <div *ngFor="let grupo of grup; let i = index" class="grupo-item">
+                <div class="card" (click)="seleccionarGrupo(grupo.idGrupo, i)">
+                  <img [src]="grupo.imagen" class="card-img-background">
+                  <div class="overlay">
+                      <h3 class="card-title excepcion">{{ grupo.nombre }}</h3>
+                        <p class="excepcion"><b>Descripción</b> {{ grupo.descripcion }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Creacion de botones con imagenes -->
+<div class="button-container">
+  <div class="button-card" (click)="activar()" *ngIf="form === false">
+    <img src="../../../assets/mas.png" class="button-img"><h4>Crear un grupo</h4>
+  </div>
+  <div class="button-card2" (click)="desactivar()" *ngIf="form === true">
+    <img src="../../../assets/remover.png" class="button-img2"><h4>Cerrar formulario</h4>
+  </div>
+</div>
+<!-- Creacion de formulario con opcion de ocultar -->
+<div class="container2" *ngIf="form === true">
   <div class="card shadow mb-4" id="formc">
     <h2 style="text-align: center;">Registro de Grupo</h2>
     <div class="card-body">
@@ -20,30 +55,7 @@
       </form>
     </div>
   </div>
-</div>
-
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-12"> 
-      <div class="card shadow mb-4">
-        <h1 style="align-items: center; text-align: center;">Unete a un grupo</h1>
-        <div class="card-body">
-          <div class="row">
-            <div *ngFor="let grupo of grup; let i = index" class="col-md-4">
-              <div class="card grupo-item2" id="card2" (click)="seleccionarGrupo(grupo.idGrupo,i)">
-                <img [src]="grupo.imagen" alt="Imagen" class="card-img-top">
-                <div class="card-body">
-                  <h3 class="card-title">{{ grupo.nombre }}</h3>
-                  <p class="card-text"><b>Descripcion</b> <br>{{ grupo.descripcion }}</p>
-                  <p class="card-text"><b>Administrador</b> <br>{{ grupo.nombreUsuario }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <br><br>
 </div>
 
 

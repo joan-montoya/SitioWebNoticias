@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-image: url('src/assets/fonts.jpg');
+    background-size: cover; /* Ajusta la imagen de fondo al tamaño del cuerpo */
+    background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
+    background-position: center center; /* Centra la imagen de fondo horizontal y verticalmente */
+    /* Puedes agregar más propiedades para personalizar la imagen de fondo, como el color de fondo */
+    /* Ejemplo: background-color: #f1f1f1; */
+    
+  }
+
+  

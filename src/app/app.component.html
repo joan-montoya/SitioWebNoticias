@@ -1,41 +1,37 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand">Mi Aplicación</a>
+<nav class="navbar navbar-expand-lg nvc">
+  <img routerLink="/menu-conf" *ngIf="sesionIniciada" class="card-img-top rounded-circle img send" src="{{avatar}}" alt="Avatar">
+  <a routerLink="/menu-conf" *ngIf="sesionIniciada" class="navbar-brand send" style="color: white;"><b>{{ firstName }} {{ lastName }}</b> </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item back-button" (click)="goBack()" *ngIf="sesionIniciada">
+      <!-- <li class="nav-item back-button" (click)="goBack()" *ngIf="sesionIniciada">
         <a class="nav-link buton">
           <i class="fas fa-arrow-left"></i> Regresar
         </a>
-      </li>
-      <li class="nav-item" *ngIf="nombreUsuario">
-        <span class="navbar-text">
-          Bienvenido, <strong>{{ nombreUsuario }}</strong>
-        </span>
+      </li> -->
+      <li class="nav-item" *ngIf="!sesionIniciada">
+        <a class="nav-link" routerLink="/login" style="color: white;">Iniciar sesión</a>
       </li>
       <li class="nav-item" *ngIf="!sesionIniciada">
-        <a class="nav-link" routerLink="/login">Iniciar sesión</a>
-      </li>
-      <li class="nav-item" *ngIf="!sesionIniciada">
-        <a class="nav-link" routerLink="/register">Registrarse</a>
+        <a class="nav-link" routerLink="/register" style="color: white;">Registrarse</a>
       </li>
       <li class="nav-item" *ngIf="sesionIniciada">
-        <a class="nav-link" routerLink="/home">Home</a>
+        <a class="nav-link" routerLink="/home" style="color: white;">Home</a>
       </li>
       <li class="nav-item" *ngIf="sesionIniciada">
-        <a class="nav-link" (click)="toggleGrupos()">{{ showGruposOptions ? 'Ocultar grupos' : 'Grupos' }}</a>
+        <a class="nav-link" (click)="toggleGrupos()"><b>{{ showGruposOptions ? 'Ocultar grupos' : 'Grupos' }}</b> </a>
       </li>
       <li class="nav-item" id="add-grupo"  *ngIf="showGruposOptions">
-        <a class="nav-link" routerLink="/rgrupo">Add grupo</a>
+        <a class="nav-link" routerLink="/rgrupo" style="color: white;">Add grupo</a>
       </li>
       <li class="nav-item" id="ver-grupos" *ngIf="showGruposOptions">
-        <a class="nav-link" routerLink="/menugrupo">Ver grupos</a>
+        <a class="nav-link" routerLink="/menugrupo" style="color: white;">Ver grupos</a>
       </li>
       <li class="nav-item" *ngIf="sesionIniciada">
-        <a class="nav-link" routerLink="/menu-conf">Configuración</a>
+        <a class="nav-link" routerLink="/misfav" style="color: white;">Mis Favoritos</a>
       </li>
     </ul>
     <ul class="navbar-nav">
@@ -48,5 +44,7 @@
   </div>
 </nav>
 
+<div class="fon">
+  <router-outlet></router-outlet>
+</div>
 
-<router-outlet></router-outlet>

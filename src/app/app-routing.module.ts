@@ -12,6 +12,7 @@ import { PublicarNoticiaComponent } from './Components/publicar-noticia/publicar
 import { NoticiasComponent } from './Components/noticias/noticias.component';
 import { TableroCatComponent } from './Components/tablero-cat/tablero-cat.component';
 import { ConfiguracionGrupoComponent } from './Components/configuracion-grupo/configuracion-grupo.component';
+import { MisFavoritosComponent } from './Components/mis-favoritos/mis-favoritos.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'noticias', component: NoticiasComponent},
   { path: 'tableroc', component: TableroCatComponent},
   { path: 'confgrupos', component: ConfiguracionGrupoComponent},
+  { path: 'misfav', component: MisFavoritosComponent}
 ];
 
 @NgModule({

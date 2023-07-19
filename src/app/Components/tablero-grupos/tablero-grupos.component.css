@@ -14,9 +14,10 @@
   }
   .card-container2 {
     padding: 20px;
-    background-color: #f1f1f1;
+    background-color: #20202070;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.75px);
   }
   
   

@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('apellido', this.user.apellido);
             localStorage.setItem('telefono', this.user.telefono);
             localStorage.setItem('avatar', this.user.avatar);
-            this.router.navigate(['/home']).then(() => {
+            this.router.navigate(['/rgrupo']).then(() => {
               window.location.reload();
             });
           });

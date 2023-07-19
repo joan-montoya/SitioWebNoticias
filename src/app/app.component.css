@@ -1,4 +1,30 @@
 .buton {
      cursor: pointer;
 }
+.fon {
+     background-color: rgba(240, 248, 255, 0.144);
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-position: center;
+     /* Puedes agregar más propiedades para personalizar la imagen de fondo, como el color de fondo */
+     /* Ejemplo: background-color: #f1f1f1; */
+     background-position: center;
+     backdrop-filter: blur(2.75px);
+   }
+
+   .img{
+     width: 50px;
+     padding-left: 5px;
+     padding-right: 5px;
+   }
+
+   .send{
+     cursor: pointer;
+   }
+   
+   .nvc{
+    background-color: rgba(0, 0, 0, 0.74);
+    color: white;
+    backdrop-filter: blur(10px);
+   }
   
