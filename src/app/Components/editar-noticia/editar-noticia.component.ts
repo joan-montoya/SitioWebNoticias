@@ -7,11 +7,11 @@ import { FavoritoService } from 'src/app/Services/favorito.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-publicar-noticia',
-  templateUrl: './publicar-noticia.component.html',
-  styleUrls: ['./publicar-noticia.component.css']
+  selector: 'app-editar-noticia',
+  templateUrl: './editar-noticia.component.html',
+  styleUrls: ['./editar-noticia.component.css']
 })
-export class PublicarNoticiaComponent implements OnInit {
+export class EditarNoticiaComponent implements OnInit {
 
   titulo = "";
   contenido = "";
@@ -22,7 +22,8 @@ export class PublicarNoticiaComponent implements OnInit {
   mostrarComentarios = false;
   idnoticia = ""
   reacciones: any;
-  favoritos: any
+  favoritos: any;
+  idNoticia: any;
 
   nuevoComentario: string = '';
 
@@ -36,11 +37,13 @@ export class PublicarNoticiaComponent implements OnInit {
 
   ngOnInit(): void {
     this.idCategoria = localStorage.getItem('catIngresado');
+    this.idNoticia = localStorage.getItem('idEditar');
     this.obtnerNoticias();
     this.ObtenerComentarios()
     this.obtenerReacciones()
     this.obtenerFavoritos()
   }
+
 
   obtnerNoticias() {
     //logica para la obtencion de noticias
@@ -48,7 +51,7 @@ export class PublicarNoticiaComponent implements OnInit {
     .subscribe(
       noticias => {
         //creamos un filtro donde solo tendremos los miembros (registros de miembros) que pertenecen al usuario registrado
-        this.noticias = noticias.filter((noticia: any) => noticia.idCategoria == this.idCategoria);
+        this.noticias = noticias.filter((noticia: any) => noticia.idNoticia == this.idNoticia);
         this.noticias = this.noticias.map((noticia: any) => {
           // Decodificar el valor de la imagen utilizando atob()
           noticia.imagen = atob(noticia.imagen);
@@ -66,37 +69,49 @@ export class PublicarNoticiaComponent implements OnInit {
   }
 
   //metodo para publicar noticias
-  publicarNoticia() {
+  editarNoticia() {
     // Crear objeto de noticia
     const imagenData = {
-      titulo: this.titulo,
-      contenido: this.contenido,
+      titulo: this.noticias[0].titulo,
+      contenido: this.noticias[0].contenido,
       imagen: btoa(this.imagen),
       grupo: {
-        idGrupo: localStorage.getItem('idGrup')
+        idGrupo: this.noticias[0].idGrupo
       },
       categoria: {
-        idCategoria: localStorage.getItem('catIngresado')
+        idCategoria: this.noticias[0].idCategoria
       },
       administrador: {
-        idUsuario: localStorage.getItem('idUsuario')
+        idUsuario: this.noticias[0].idUsuario
       }
     }
 
+    // comprobamos que la imagen no esta vacia
+      if (imagenData && imagenData.imagen !== '') {
+        console.log('La imagen no está vacía.');
+      } else {
+        imagenData.imagen = btoa(this.noticias[0].imagen)
+      }
+
+    console.log(imagenData)
       //logica para la insercion de noticias
-      this.NoticiasService.guardarNoticia(imagenData).subscribe(
+      this.NoticiasService.modificarNoticia(this.noticias[0].idNoticia,imagenData).subscribe(
         (response) => {
-          console.log('Noticia insertada:', response);
           Swal.fire({
             icon: 'success',
-            title: 'Noticia insertado con éxito',
+            title: 'Noticia editada con éxito',
           }).then(() => {
             window.location.reload();
           });
         },
         (error) => {
-          console.error('Error al insertar el grupo:', error);
-          // Lógica de manejo de errores
+          console.error('Error al editar la noticia:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al editar la noticia'+error,
+          }).then(() => {
+            window.location.reload();
+          });
         }
       );
 
@@ -316,8 +331,5 @@ getCantidadReacciones(idNoticia: number): number {
   // Devolvemos la cantidad de reacciones para esa noticia.
   return reaccionesFiltradas.length;
 }
-  editarnoticia(idNoticia: any){
-    localStorage.setItem('idEditar', idNoticia);
-    this.router.navigate(['/editn'])
-  }
+
 }

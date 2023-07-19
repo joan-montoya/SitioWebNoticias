@@ -24,6 +24,10 @@ export class MiembroService {
     return this.http.post<any>(`${this.url}`, miembroData, { headers });
   }
 
+  eliminarMiembro(idMiembro: any): Observable<any> {
+    return this.http.delete<any>(`${this.url}/${idMiembro}`);
+  }
+
   private getHeaders(): HttpHeaders {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');

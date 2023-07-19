@@ -22,6 +22,10 @@ export class NoticiasService {
     return this.http.post<any>(`${this.url}`, noticiaData, { headers });
   }
 
+  modificarNoticia(id: any, noticia: any): Observable<any> {
+    return this.http.put<any>(`${this.url}/${id}`, noticia); 
+  }
+
   private getHeaders(): HttpHeaders {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');

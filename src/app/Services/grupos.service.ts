@@ -29,6 +29,10 @@ export class GruposService {
     return this.http.put<any>(`${this.url}/${id}`, grupo, { headers }); 
   }
 
+  eliminarGrupo(idGrupo: any): Observable<any> {
+    return this.http.delete<any>(`${this.url}/${idGrupo}`);
+  }
+
   private getHeaders(): HttpHeaders {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');

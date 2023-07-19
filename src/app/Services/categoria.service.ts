@@ -22,6 +22,15 @@ export class CategoriaService {
     return this.http.post<any>(`${this.url}`, categoriaData, { headers });
   }
 
+  modificarCategoria(id: any, categoria: any): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.put<any>(`${this.url}/${id}`, categoria, { headers }); 
+  }
+
+  eliminarCategoria(idCategoria: any): Observable<any> {
+    return this.http.delete<any>(`${this.url}/${idCategoria}`);
+  }
+
   private getHeaders(): HttpHeaders {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');

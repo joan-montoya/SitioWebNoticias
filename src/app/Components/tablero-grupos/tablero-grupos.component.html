@@ -1,4 +1,4 @@
-<div class="card-container">
+<div class="card-container2">
   <h1 style="text-align: center;">Categorias en {{ grupo }}</h1>
 </div>
 <br>
@@ -8,7 +8,9 @@
       <div class="card add-card" (click)="showFormPopup()">
         <span class="card-text">Agregar Categoría</span>
       </div>
-      <div [ngClass]="generarClaseAleatoria()" *ngFor="let categoria of categorias" (click)="seleccionarCategoria(categoria.idCategoria, categoria.nombreCategoria)">
+      <div class="card1" *ngFor="let categoria of categorias" >
+        <button (click)="editarCategoria(categoria.idCategoria)">  editar</button>
+        <button (click)="borrarCategorias(categoria.idCategoria)">elminar</button>
         <span class="card-text" >{{ categoria.nombreCategoria }}</span>
       </div>
     </div>

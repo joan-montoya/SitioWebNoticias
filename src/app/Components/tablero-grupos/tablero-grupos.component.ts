@@ -75,6 +75,80 @@ export class TableroGruposComponent implements OnInit {
     });
   }
 
+  editarCategoria(idCategoria:any) {
+    Swal.fire({
+      title: 'modificar Categoría',
+      text: 'Ingrese el nuevo nombre de la categoría:',
+      input: 'text',
+      showCancelButton: true,
+      confirmButtonText: 'Agregar',
+      cancelButtonText: 'Cancelar',
+      allowOutsideClick: false
+    }).then((result) => {
+      if (result.isConfirmed && result.value) {
+        const value: string = result.value;
+        this.generateCard(value);
+        //creacion de json para la insercion
+        const categoriaData = {
+          nombreCategoria: value,
+          grupo: {
+            idGrupo: this.id
+          },
+        };
+        //logica de modificacion de categoria
+        this.CategoriaService.modificarCategoria(idCategoria,categoriaData).subscribe(
+          (response) => {
+            console.log('categoria modificada:', response);
+            Swal.fire({
+              icon: 'success',
+              title: 'Has modificado la categoría ' + value,
+            }).then((result) => {
+              if (result.isConfirmed) {
+                location.reload(); 
+              }
+            });
+            
+          },
+          (error) => {
+            console.error('Error al insertar el miembro:', error);
+            // Lógica de manejo de errores
+          }
+        );
+      }
+    });
+  }
+
+  borrarCategorias(idCategoria: any) {
+    Swal.fire({
+      icon: 'warning',
+      title: '¿Estás seguro de eliminar la categoría?',
+      text: 'Esta acción no se puede deshacer.',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.CategoriaService.eliminarCategoria(idCategoria).subscribe(
+          (response) => {
+            console.log('categoria eliminada:', response);
+            Swal.fire({
+              icon: 'success',
+              title: 'Has eliminado la categoría',
+            }).then(() => {
+              location.reload();
+            });
+          },
+          (error) => {
+            console.error('Error al eliminar la categoría:', error);
+            // Lógica de manejo de errores
+          }
+        );
+      }
+    });
+  }
+
   obtnerCategorias() {
     //logica para la obtencion de categorias
     this.CategoriaService.obtenerCategorias()

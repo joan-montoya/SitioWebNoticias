@@ -4,6 +4,8 @@ import { Grupo } from 'src/app/Models/Grupo';
 import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { MiembroService } from 'src/app/Services/miembro.service';
+import { Observable, of  } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-registro-grupo',
@@ -21,6 +23,8 @@ export class RegistroGrupoComponent implements OnInit {
   gruposP: any[];
   miembros: any;
   form = false;
+  miembrosid: any;
+  members: any;
 
   constructor(private GruposService: GruposService, private MiembroService: MiembroService) { 
      // Obtener el idUsuario del localStorage
@@ -35,7 +39,10 @@ export class RegistroGrupoComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerGrupos()
     this.obtenerMiembros()
+    this.obtnerMiem()
   }
+
+  
 
   obtenerGrupos() {
     const idUsuario = parseInt(localStorage.getItem('idUsuario') || '0', 10); // Obtener el ID de usuario de localStorage y convertirlo a número
@@ -253,6 +260,27 @@ export class RegistroGrupoComponent implements OnInit {
   desactivar() {
     this.form = false;
   }
+
+  //obtenemos los miembros y los guardamos en una valiable aparte
+  obtnerMiem(){
+    this.MiembroService.obtenerMiembros().subscribe(
+      (response) => {
+        this.members = response 
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
+  }
+    // Función para obtener la cantidad de reacciones por idNoticia
+    getCantidadMiembros(idGrupo: number): number {
+    // Filtrar las reacciones solo para la noticia actual (idNoticia)
+    const reaccionesFiltradas = this.members.filter((miembro: any) => miembro.idGrupo == idGrupo);
+  
+    // Devolvemos la cantidad de reacciones para esa noticia.
+    return reaccionesFiltradas.length;
+  }
+    
   
   
 }

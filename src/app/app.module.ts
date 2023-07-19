@@ -19,6 +19,7 @@ import { NoticiasComponent } from './Components/noticias/noticias.component';
 import { TableroCatComponent } from './Components/tablero-cat/tablero-cat.component';
 import { ConfiguracionGrupoComponent } from './Components/configuracion-grupo/configuracion-grupo.component';
 import { MisFavoritosComponent } from './Components/mis-favoritos/mis-favoritos.component';
+import { EditarNoticiaComponent } from './Components/editar-noticia/editar-noticia.component';
 
 
 
@@ -39,6 +40,7 @@ import { MisFavoritosComponent } from './Components/mis-favoritos/mis-favoritos.
     TableroCatComponent,
     ConfiguracionGrupoComponent,
     MisFavoritosComponent,
+    EditarNoticiaComponent,
   ],
   imports: [
     BrowserModule,

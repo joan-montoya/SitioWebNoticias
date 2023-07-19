@@ -24,11 +24,15 @@ export class MenuGruposComponent implements OnInit {
   miembros: any;
   miembroP: any[];
   gruposP: any[];
+  idUsuario: any;
   gruposNoCoincidentes = [];
+  miembrosid: any; 
+  members: any;
 
   constructor(private GruposService: GruposService, private MiembroService: MiembroService) { 
     // Obtener el idUsuario del localStorage
     const idUsuario = localStorage.getItem('idUsuario');
+    this.idUsuario = localStorage.getItem('idUsuario');
     const idUsuarioNumber = idUsuario ? parseInt(idUsuario, 10) : 0;
     this.user = { idUsuario: idUsuarioNumber };
     this.miembroP = [];
@@ -39,6 +43,7 @@ export class MenuGruposComponent implements OnInit {
  ngOnInit(): void {
    this.obtenerGrupos()
    this.obtenerMiembros()
+   this.obtnerMiem()
  }
 
  obtenerMiembros() {
@@ -202,6 +207,88 @@ export class MenuGruposComponent implements OnInit {
         }
       });
     }
+
+    abandonarGrupo(idGrupo: any) {
+      Swal.fire({
+        title: '¿Estás seguro de abandonar el grupo?',
+        text: 'Esta acción no se puede deshacer.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, abandonar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.MiembroService.obtenerMiembros().subscribe(
+            (response) => {
+              this.miembrosid = response.filter((miembro: any) => miembro.idGrupo == idGrupo);
+              this.miembrosid = this.miembrosid.filter((miembro: any) => miembro.idUsuario == this.idUsuario)
+              this.MiembroService.eliminarMiembro(this.miembrosid[0].idMiembro).subscribe(
+                (response) => {
+                  location.reload();
+                },
+                (error) => {
+                  console.log(error);
+                }
+              );
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+        }
+      });
+    }
+
+    //obtenemos los miembros y los guardamos en una valiable aparte
+  obtnerMiem(){
+    this.MiembroService.obtenerMiembros().subscribe(
+      (response) => {
+        this.members = response 
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
+  }
+    // Función para obtener la cantidad de reacciones por idNoticia
+    getCantidadMiembros(idGrupo: number): number {
+    // Filtrar las reacciones solo para la noticia actual (idNoticia)
+    const reaccionesFiltradas = this.members.filter((miembro: any) => miembro.idGrupo == idGrupo);
+  
+    // Devolvemos la cantidad de reacciones para esa noticia.
+    return reaccionesFiltradas.length;
+  }
+
+  eliminarGrupo(idGrupo: any) {
+    Swal.fire({
+      title: '¿Estás seguro de eliminar el grupo?',
+      text: 'Esta acción no se puede deshacer.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+            this.GruposService.eliminarGrupo(idGrupo).subscribe(
+              (response) => {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Grupo eliminado con éxito',
+                }).then(() => {
+                  window.location.reload();
+                });
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
+      }
+    });
+  }
   
 
 }

@@ -8,11 +8,13 @@
           <div class="horizontal-scroll">
             <div class="grupo-container">
               <div *ngFor="let grupo of grupos; let i = index" class="grupo-item">
+                <button (click)="eliminarGrupo(grupo.idGrupo)">Borrar</button>
                 <div class="card" (click)="seleccionarGrupo(grupo.nombre, grupo.idGrupo)">
                   <img [src]="grupo.imagen" class="card-img-background">
                   <div class="overlay">
                       <h3 class="card-title excepcion">{{ grupo.nombre }}</h3>
                         <p class="excepcion"><b>Descripción</b> {{ grupo.descripcion }}</p>
+                        <p class="excepcion"><b>Miembros: </b>{{ getCantidadMiembros(grupo.idGrupo) }}</p>
                   </div>
                 </div>
               </div>
@@ -34,12 +36,14 @@
             <div class="horizontal-scroll">
               <div class="grupo-container">
                 <div *ngFor="let grupo of grup; let i = index" class="grupo-item">
+                  <button (click)="abandonarGrupo(grupo.idGrupo)">Borrar</button>
                   <div class="card grupo-item2" id="card2" (click)="seleccionarGrupo2(grupo.nombre,grupo.idGrupo)">
                     <img [src]="grupo.imagen" alt="Imagen"  class="card-img-background">
                     <div class="overlay">
                       <h3 class="card-title excepcion">{{ grupo.nombre }}</h3>
                       <p class="card-text excepcion"><b>Descripcion</b> <br>{{ grupo.descripcion }}</p>
                       <p class="card-text excepcion"><b>Administrador</b> <br>{{ grupo.nombreUsuario }}</p>
+                      <p class="excepcion"><b>Miembros: </b>{{ getCantidadMiembros(grupo.idGrupo) }}</p>
                     </div>
                   </div>
                 </div>
