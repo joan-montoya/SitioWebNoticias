@@ -101,7 +101,7 @@ export class EditarNoticiaComponent implements OnInit {
             icon: 'success',
             title: 'Noticia editada con éxito',
           }).then(() => {
-            window.location.reload();
+            history.back();
           });
         },
         (error) => {

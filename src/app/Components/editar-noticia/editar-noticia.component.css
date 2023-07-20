@@ -62,11 +62,27 @@
       height: 25px;
       cursor: pointer;
     }
+    .mg1:hover {
+      transform: scale(1.40);
+      transition: 250ms;
+    }
+    .mg1:not(:hover) {
+      transition: transform 600ms; /* Transición más lenta solo para la propiedad transform al quitar el hover */
+      transform: scale(1); /* Volver al estado original sin retraso */
+    }
     .fv1{
       width: 35px;
       height: 35px;
       cursor: pointer;
       float: right;
+    }
+    .fv1:hover {
+      transform: scale(1.40);
+      transition: 250ms;
+    }
+    .fv1:not(:hover) {
+      transition: transform 600ms; /* Transición más lenta solo para la propiedad transform al quitar el hover */
+      transform: scale(1); /* Volver al estado original sin retraso */
     }
   
     .btnf{

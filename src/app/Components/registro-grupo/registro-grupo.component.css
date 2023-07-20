@@ -18,6 +18,13 @@
   .form-group {
     margin-bottom: 20px;
   }
+
+  .cont {
+    position: absolute;
+    bottom: -13px; 
+    left: 10px; 
+    z-index: 1;
+  }
   
   label {
     display: block;

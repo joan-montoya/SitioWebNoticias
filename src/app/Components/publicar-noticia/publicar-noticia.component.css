@@ -8,12 +8,6 @@
     margin-top: 1px;
   }
   
-  .avatar img {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
   
   .card-container3 {
     padding: 10px;
@@ -25,22 +19,26 @@
     .comment {
       display: flex;
       align-items: flex-start;
-      margin-bottom: 1px;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 1px;
-      border-top: 1px #ccc;
-      margin-top: 1px;
+      background-color: #f2f2f2; /* Color de fondo gris */
+      border-radius: 10px; /* Esquinas redondeadas */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para un aspecto suave */
+      padding: 4px; /* Espaciado interno para el contenido */
+      margin-bottom: 10px; /* Espaciado entre tarjetas (ajusta según tus necesidades) */
+
     }
     
     .avatar img {
-      width: 25px;
-      height: 25px;
+      width: 35px;
+      height: 35px;
       border-radius: 50%;
       margin-right: 10px;
+      margin-left: 10px;
+      margin-top: 7px;
     }
     
     .comment-content {
       flex: 1;
+      position: relative;
     }
     
     .comment-content h4 {
@@ -56,11 +54,27 @@
       padding: 5px;
       padding-bottom: 5px;
     }
+    .ver-comentarios-link:hover {
+      transform: scale(1.40);
+      transition: 250ms;
+    }
+    .ver-comentarios-link:not(:hover) {
+      transition: transform 600ms; /* Transición más lenta solo para la propiedad transform al quitar el hover */
+      transform: scale(1); /* Volver al estado original sin retraso */
+    }
   
     .mg1{
       width: 25px;
       height: 25px;
       cursor: pointer;
+    }
+    .mg1:hover {
+      transform: scale(1.40);
+      transition: 250ms;
+    }
+    .mg1:not(:hover) {
+      transition: transform 600ms; /* Transición más lenta solo para la propiedad transform al quitar el hover */
+      transform: scale(1); /* Volver al estado original sin retraso */
     }
     .fv1{
       width: 35px;
@@ -68,6 +82,16 @@
       cursor: pointer;
       float: right;
     }
+    .fv1:hover {
+      transform: scale(1.40);
+      transition: 250ms;
+    }
+    .fv1:not(:hover) {
+      transition: transform 600ms; /* Transición más lenta solo para la propiedad transform al quitar el hover */
+      transform: scale(1); /* Volver al estado original sin retraso */
+    }
+
+
   
     .btnf{
       width: 25px;
@@ -101,6 +125,19 @@
   
   .editar {
     float: right;
+  }
+
+  .editar3{
+    position: absolute; /* Hacer que el botón sea posicionado de forma absoluta */
+    top: 10px; /* Ajustar la distancia desde la parte superior */
+    right: 10px; /* Ajustar la distancia desde la parte derecha */
+    z-index: 1;
+  }
+  .editar2{
+    position: absolute; /* Hacer que el botón sea posicionado de forma absoluta */
+    top: 10px; /* Ajustar la distancia desde la parte superior */
+    right: 70px; /* Ajustar la distancia desde la parte derecha */
+    z-index: 1;
   }
     
     

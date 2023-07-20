@@ -24,6 +24,7 @@ export class MisFavoritosComponent implements OnInit {
   idnoticia = ""
   reacciones: any;
   favoritos: any
+  idUsuario: any;
 
   nuevoComentario: string = '';
 
@@ -37,6 +38,7 @@ export class MisFavoritosComponent implements OnInit {
   ngOnInit(): void {
     this.idCategoria = localStorage.getItem('catIngresado');
     this.nombreCat = localStorage.getItem('nombreCat');
+    this.idUsuario = localStorage.getItem('idUsuario');
     this.obtnerNoticias();
     this.ObtenerComentarios()
     this.obtenerReacciones()
@@ -101,17 +103,20 @@ export class MisFavoritosComponent implements OnInit {
     );
   }
 
-  //logica para obtener comentarios
-  ObtenerComentarios() {
-    this.ComentarioService.obtenerComentarios().subscribe(
-        (response) => {
-          this.comentarios = response //.filter((comentario: any) => comentario.idNoticia === idNoticia)
-        },
-        (error) => {
-          console.log(error)
-        }
-      )
-  }
+ //logica para obtener comentarios
+ ObtenerComentarios() {
+  this.ComentarioService.obtenerComentarios().subscribe(
+    (response) => {
+      
+      this.comentarios = response.sort((a: any, b: any) => a.idComentario - b.idComentario);
+      console.log(this.comentarios);
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+  
+}
 
   //logica para obtener reacciones
   obtenerReacciones() {
@@ -255,6 +260,70 @@ getCantidadReacciones(idNoticia: number): number {
 
   // Devolvemos la cantidad de reacciones para esa noticia.
   return reaccionesFiltradas.length;
+}
+
+//logica para eliminar comentarios
+eliminarComentario(idComentario: any) {
+  this.ComentarioService.eliminarComentario(idComentario).subscribe(
+      (response) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Comentario eliminado con éxito',
+        }).then(() => {
+          window.location.reload();
+        });
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
+}
+
+//logica para modificar comentarios
+editarComentario(idComentario: any, idNoticia: any) {
+    Swal.fire({
+      title: 'modificar comentario',
+      text: 'Ingrese el nuevo contenido del comentario:',
+      input: 'text',
+      showCancelButton: true,
+      confirmButtonText: 'Agregar',
+      cancelButtonText: 'Cancelar',
+      allowOutsideClick: false
+    }).then((result) => {
+      if (result.isConfirmed && result.value) {
+        const value: string = result.value;
+        //creacion de json para la insercion
+        const comentarioData = {
+          contenido: value,
+          usuario: {
+            idUsuario: parseInt(localStorage.getItem('idUsuario') || '0', 10)
+          },
+          noticia: {
+            idNoticia: idNoticia
+          }
+        }
+        //logica de modificacion de categoria
+        console.log(comentarioData)
+        this.ComentarioService.modificarComentario(idComentario,comentarioData).subscribe(
+          (response) => {
+            console.log('Cometario modificada:', response);
+            
+            
+          },
+          (error) => {
+            console.error('Error al insertar el miembro:', error);
+            Swal.fire({
+              icon: 'success',
+              title: 'Has modificado el comentario',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                location.reload(); 
+              }
+            });
+          }
+        );
+      }
+    });
 }
 }
 

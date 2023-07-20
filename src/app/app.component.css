@@ -21,6 +21,21 @@
    .send{
      cursor: pointer;
    }
+   .send2{
+    cursor: pointer;
+    border-radius: 16px;
+  }
+
+   /*estilos dobre hover*/
+.send2:hover {
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.295);
+  transform: scale(1.02);
+  transition: 250ms;
+}
+.send2:not(:hover) {
+  transition: transform 600ms; /* Transición más lenta solo para la propiedad transform al quitar el hover */
+  transform: scale(1); /* Volver al estado original sin retraso */
+}
    
    .nvc{
     background-color: rgba(0, 0, 0, 0.74);

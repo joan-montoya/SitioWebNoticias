@@ -19,6 +19,12 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10.75px);
   }
+
+  /*tamaño de la imagen en boton*/
+.btnf{
+  width: 25px;
+}
+
   
   
   .card {
@@ -41,37 +47,26 @@
     cursor: pointer;
   }
 
-  .card2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 130px;
-    background-color: #fd4de579;
-    border-radius: 10px;
-    cursor: pointer;
+  /*estilos dobre hover*/
+  .card1:hover {
+    box-shadow: 0 8px 12px rgba(224, 245, 130, 0.507);
+    transform: scale(1.10);
+    transition: 250ms;
   }
-
-  .card3 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 130px;
-    background-color: #4dfda579;
-    border-radius: 10px;
-    cursor: pointer;
+  .card1:not(:hover) {
+    transition: transform 600ms; /* Transición más lenta solo para la propiedad transform al quitar el hover */
+    transform: scale(1); /* Volver al estado original sin retraso */
   }
-
-  .card4 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 130px;
-    background-color: #4da8fd79;
-    border-radius: 10px;
-    cursor: pointer;
+  .content {
+    width: 100%;
+    height: 100%;
+    text-align: center;
   }
   
-  
+  .tex{
+    top: 40%;
+    position: relative;
+  }
   .add-card {
     background-color: #0078D7;
     color: #fff;
@@ -83,3 +78,56 @@
     text-align: center;
   }
   
+
+  .grupo-item {
+    /* ... Tus estilos existentes ... */
+    position: relative; /* Agregar posición relativa al contenedor */
+  }
+  
+  /* Estilo para el botón flotante */
+  .btnfloat {
+    position: absolute; /* Hacer que el botón sea posicionado de forma absoluta */
+    top: 10px; /* Ajustar la distancia desde la parte superior */
+    right: 10px; /* Ajustar la distancia desde la parte derecha */
+    z-index: 1; /* Asegurar que el botón se superponga a la imagen */
+    background-color: rgba(245, 19, 19, 0.548);
+    border-color: rgb(112, 11, 11);
+    border-radius: 16px;
+    border-width: 3px;
+    backdrop-filter: blur(6.75px);
+  }
+  /*estilos dobre hover*/
+  .btnfloat:hover {
+    box-shadow: 0 8px 12px rgba(245, 168, 168, 0.507);
+    transform: scale(1.10);
+    transition: 250ms;
+  }
+  .btnfloat:not(:hover) {
+    transition: transform 600ms; /* Transición más lenta solo para la propiedad transform al quitar el hover */
+    transform: scale(1); /* Volver al estado original sin retraso */
+  }
+  .btnfloat2 {
+    position: absolute; /* Hacer que el botón sea posicionado de forma absoluta */
+    top: 10px; /* Ajustar la distancia desde la parte superior */
+    left: 10px; /* Ajustar la distancia desde la parte derecha */
+    z-index: 1; /* Asegurar que el botón se superponga a la imagen */
+    background-color: rgba(255, 217, 0, 0.856);
+    border-color: rgba(124, 106, 0, 0.548);
+    border-radius: 16px;
+    border-width: 3px;
+    backdrop-filter: blur(6.75px);
+  }
+  /*estilos dobre hover*/
+  .btnfloat2:hover {
+    box-shadow: 0 8px 12px rgba(224, 245, 130, 0.507);
+    transform: scale(1.10);
+    transition: 250ms;
+  }
+  .btnfloat2:not(:hover) {
+    transition: transform 600ms; /* Transición más lenta solo para la propiedad transform al quitar el hover */
+    transform: scale(1); /* Volver al estado original sin retraso */
+  }
+
+  .excepcion {
+    white-space: normal; /* Anula el white-space: nowrap; heredado */
+  }

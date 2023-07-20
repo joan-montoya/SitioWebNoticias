@@ -39,6 +39,12 @@
                   <div class="comment-content">
                     <p><b>{{ comentario.nombreUsuario }}</b><br>
                       {{ comentario.contenido }}</p>
+                      <button class="btn btn-warning editar2" *ngIf="comentario.idUsuario == idUsuario" (click)="editarComentario(comentario.idComentario,noticia.idNoticia)">
+                        <img src="../../../assets/editar.png" class="btnf">
+                      </button>
+                      <button class="btn btn-danger editar3" *ngIf="comentario.idUsuario == idUsuario" (click)="eliminarComentario(comentario.idComentario)">
+                        <img src="../../../assets/marca-x.png" class="btnf">
+                      </button>
                   </div>
                 </div>
               </div>

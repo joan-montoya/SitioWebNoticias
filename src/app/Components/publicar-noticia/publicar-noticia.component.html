@@ -21,7 +21,9 @@
         <div class="col-8" *ngFor="let noticia of noticias">
           <div class="card shadow mb-4">
             <div class="card-body">
-              <button class="btn btn-primary editar" (click)="editarnoticia(noticia.idNoticia)">Editar</button>
+              <button class="btn btn-warning editar" (click)="editarnoticia(noticia.idNoticia)">
+                <img src="../../../assets/editar.png" class="btnf">
+              </button>
               <h3 class="card-title">{{ noticia.titulo }}</h3>
               <p class="card-text">{{ noticia.contenido }}</p>
               <img [src]="noticia.imagen" class="card-img-top" alt="Imagen de la noticia" *ngIf="noticia.imagen">
@@ -44,7 +46,7 @@
                 *ngIf="verificarFavorito(noticia.idNoticia); let idFavorito" (click)="eliminarFavorito(idFavorito)">
     
                 <br>
-              <span (click)="toggleComentarios(noticia.idNoticia)" class="ver-comentarios-link"><b>Ver comentarios</b></span>
+              <span (click)="toggleComentarios(noticia.idNoticia)" class="ver-comentarios-link verc"><b>Ver comentarios</b></span>
               <div class="comment-container mt-4" *ngIf="mostrarComentarios && noticia.idNoticia === idnoticia">
                 <div *ngFor="let comentario of comentarios">
                   <div class="comment" *ngIf="comentario.idNoticia == noticia.idNoticia">
@@ -54,6 +56,12 @@
                     <div class="comment-content">
                       <p><b>{{ comentario.nombreUsuario }}</b><br>
                         {{ comentario.contenido }}</p>
+                        <button class="btn btn-warning editar2" *ngIf="comentario.idUsuario == idUsuario" (click)="editarComentario(comentario.idComentario,noticia.idNoticia)">
+                          <img src="../../../assets/editar.png" class="btnf">
+                        </button>
+                        <button class="btn btn-danger editar3" *ngIf="comentario.idUsuario == idUsuario" (click)="eliminarComentario(comentario.idComentario)">
+                          <img src="../../../assets/marca-x.png" class="btnf">
+                        </button>
                     </div>
                   </div>
                 </div>

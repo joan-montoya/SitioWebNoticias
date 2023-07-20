@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg nvc">
-  <img routerLink="/menu-conf" *ngIf="sesionIniciada" class="card-img-top rounded-circle img send" src="{{avatar}}" alt="Avatar">
-  <a routerLink="/menu-conf" *ngIf="sesionIniciada" class="navbar-brand send" style="color: white;"><b>{{ firstName }} {{ lastName }}</b> </a>
+  <div class="send2" *ngIf="sesionIniciada">
+    <img routerLink="/menu-conf" *ngIf="sesionIniciada" class="card-img-top rounded-circle img send" src="{{avatar}}" alt="Avatar">
+    <a routerLink="/menu-conf" *ngIf="sesionIniciada" class="navbar-brand send" style="color: white;"><b>{{ firstName }} {{ lastName }}</b> </a>
+  </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -13,25 +15,39 @@
         </a>
       </li> -->
       <li class="nav-item" *ngIf="!sesionIniciada">
-        <a class="nav-link" routerLink="/login" style="color: white;">Iniciar sesión</a>
+        <div class="send2">
+          <a class="nav-link" routerLink="/login" style="color: white;">Iniciar sesión</a>
+        </div> 
       </li>
       <li class="nav-item" *ngIf="!sesionIniciada">
-        <a class="nav-link" routerLink="/register" style="color: white;">Registrarse</a>
+        <div class="send2">
+          <a class="nav-link" routerLink="/register" style="color: white;">Registrarse</a>
+        </div>
       </li>
       <li class="nav-item" *ngIf="sesionIniciada">
-        <a class="nav-link" routerLink="/home" style="color: white;">Home</a>
+        <div class="send2" *ngIf="sesionIniciada">
+         <a class="nav-link" routerLink="/home" style="color: white;">Home</a> 
+        </div>
       </li>
       <li class="nav-item" *ngIf="sesionIniciada">
-        <a class="nav-link" (click)="toggleGrupos()"><b>{{ showGruposOptions ? 'Ocultar grupos' : 'Grupos' }}</b> </a>
+        <div class="send2" *ngIf="sesionIniciada">
+          <a class="nav-link" (click)="toggleGrupos()"><b>{{ showGruposOptions ? 'Ocultar grupos' : 'Grupos' }}</b> </a>
+        </div>
       </li>
       <li class="nav-item" id="add-grupo"  *ngIf="showGruposOptions">
-        <a class="nav-link" routerLink="/rgrupo" style="color: white;">Add grupo</a>
+        <div class="send2" *ngIf="sesionIniciada">
+          <a class="nav-link" routerLink="/rgrupo" style="color: white;">Add grupo</a>
+        </div>
       </li>
       <li class="nav-item" id="ver-grupos" *ngIf="showGruposOptions">
-        <a class="nav-link" routerLink="/menugrupo" style="color: white;">Ver grupos</a>
+        <div class="send2" *ngIf="sesionIniciada">
+         <a class="nav-link" routerLink="/menugrupo" style="color: white;">Ver grupos</a> 
+        </div>
       </li>
       <li class="nav-item" *ngIf="sesionIniciada">
-        <a class="nav-link" routerLink="/misfav" style="color: white;">Mis Favoritos</a>
+        <div class="send2" *ngIf="sesionIniciada">
+         <a class="nav-link" routerLink="/misfav" style="color: white;">Mis Favoritos</a> 
+        </div>
       </li>
     </ul>
     <ul class="navbar-nav">
