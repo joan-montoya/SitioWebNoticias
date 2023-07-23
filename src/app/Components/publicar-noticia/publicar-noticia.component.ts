@@ -74,6 +74,7 @@ export class PublicarNoticiaComponent implements OnInit {
       titulo: this.titulo,
       contenido: this.contenido,
       imagen: btoa(this.imagen),
+      activo: "true",
       grupo: {
         idGrupo: localStorage.getItem('idGrup')
       },

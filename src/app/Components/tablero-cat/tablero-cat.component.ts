@@ -293,7 +293,7 @@ export class TableroCatComponent implements OnInit {
 
 
   verificarNoticia(idNoticia: number): boolean {
-    const porcentajeMinimo = 30;
+    const porcentajeMinimo = 13;
   
     // Clonar el array de reacciones para evitar modificar el original durante el ciclo de detección de cambios
     const reaccionesFiltradas = this.reacciones.filter((reaccion: any) => reaccion.idNoticia == idNoticia);

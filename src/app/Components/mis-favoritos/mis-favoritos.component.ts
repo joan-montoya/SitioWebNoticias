@@ -254,13 +254,14 @@ export class MisFavoritosComponent implements OnInit {
   }
 
    // Función para obtener la cantidad de reacciones por idNoticia
-getCantidadReacciones(idNoticia: number): number {
-  // Filtrar las reacciones solo para la noticia actual (idNoticia)
-  const reaccionesFiltradas = this.reacciones.filter((reaccion: any) => reaccion.idNoticia === idNoticia);
-
-  // Devolvemos la cantidad de reacciones para esa noticia.
-  return reaccionesFiltradas.length;
-}
+   getCantidadReacciones(idNoticia: number): number {
+    if (this.reacciones && this.reacciones.length > 0) {
+      const reaccionesFiltradas = this.reacciones.filter((reaccion: any) => reaccion.idNoticia === idNoticia);
+      return reaccionesFiltradas.length;
+    }
+    return 0; // Retorna 0 si no hay reacciones o la variable this.reacciones no está definida.
+  }
+  
 
 //logica para eliminar comentarios
 eliminarComentario(idComentario: any) {

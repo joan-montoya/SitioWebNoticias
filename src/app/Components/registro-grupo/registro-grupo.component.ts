@@ -266,14 +266,15 @@ export class RegistroGrupoComponent implements OnInit {
     this.MiembroService.obtenerMiembros().subscribe(
       (response) => {
         this.members = response 
+        console.log(this.members)
       },
       (error) => {
         console.log(error)
       }
     )
   }
-    // Función para obtener la cantidad de reacciones por idNoticia
-    getCantidadMiembros(idGrupo: number): number {
+   // Función para obtener la cantidad de reacciones por idNoticia
+   getCantidadMiembros(idGrupo: number): number {
     // Filtrar las reacciones solo para la noticia actual (idNoticia)
     const reaccionesFiltradas = this.members.filter((miembro: any) => miembro.idGrupo == idGrupo);
   
@@ -281,7 +282,7 @@ export class RegistroGrupoComponent implements OnInit {
     return reaccionesFiltradas.length;
   }
     
-  
+   
   
 }
 
