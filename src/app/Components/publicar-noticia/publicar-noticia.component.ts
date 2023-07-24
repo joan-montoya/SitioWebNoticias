@@ -50,7 +50,7 @@ export class PublicarNoticiaComponent implements OnInit {
     .subscribe(
       noticias => {
         //creamos un filtro donde solo tendremos los miembros (registros de miembros) que pertenecen al usuario registrado
-        this.noticias = noticias.filter((noticia: any) => noticia.idCategoria == this.idCategoria);
+        this.noticias = noticias.filter((noticia: any) => noticia.idCategoria == this.idCategoria && noticia.activo !== "false");
         this.noticias = this.noticias.map((noticia: any) => {
           // Decodificar el valor de la imagen utilizando atob()
           noticia.imagen = atob(noticia.imagen);

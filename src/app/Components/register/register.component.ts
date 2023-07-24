@@ -5,6 +5,7 @@ import { Usuario } from '../../Models/Usuario';
 import { UsuarioServiceService } from '../../Services/usuario-service.service';
 import Swal from 'sweetalert2';
 import { AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface RegisterData {
   firstName: string;
@@ -42,7 +43,7 @@ export class RegisterComponent implements OnInit {
   selectedImage: string = '';
   imageRows: string[][] = [];
 
-  constructor(private UsuarioServiceService: UsuarioServiceService) {
+  constructor(private UsuarioServiceService: UsuarioServiceService, private router: Router) {
     this.generateImageRows();
     this.registerData = {
       firstName: '',
@@ -138,7 +139,9 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         nuevoUsuario => {
           Swal.fire('Registro exitoso', 'Usuario registrado correctamente.', 'success').then(() => {
-            location.reload(); // Recargar el sitio después de un registro exitoso
+            this.router.navigate(['/login']).then(() => {
+              window.location.reload();
+            });  // Recargar el sitio después de un registro exitoso
           });
           console.log('Usuario registrado:', nuevoUsuario);
         },

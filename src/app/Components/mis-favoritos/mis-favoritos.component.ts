@@ -210,7 +210,7 @@ export class MisFavoritosComponent implements OnInit {
     const idUsuario = localStorage.getItem('idUsuario');
   
     if (this.favoritos && this.favoritos.length > 0) {
-      const favoritoEncontrado = this.favoritos.find((favorito: any) => favorito.idUsuario == idUsuario && favorito.idNoticia === idNoticia);
+      const favoritoEncontrado = this.favoritos.find((favorito: any) => favorito.idUsuario == idUsuario && favorito.idNoticia === idNoticia );
       if (favoritoEncontrado) {
         return favoritoEncontrado.idFavorito; // Devuelve el ID del favorito encontrado
       }

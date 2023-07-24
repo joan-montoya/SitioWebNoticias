@@ -117,6 +117,55 @@ export class EditarNoticiaComponent implements OnInit {
 
     }
 
+    //logica para eliminar noticias
+    eliminarNoticia(){
+      // Crear objeto de noticia
+    const imagenData = {
+      titulo: "",
+      contenido: "",
+      imagen: "",
+      activo: false,
+      grupo: {
+        idGrupo: this.noticias[0].idGrupo
+      },
+      categoria: {
+        idCategoria: this.noticias[0].idCategoria
+      },
+      administrador: {
+        idUsuario: this.noticias[0].idUsuario
+      }
+    }
+
+    // comprobamos que la imagen no esta vacia
+      if (imagenData && imagenData.imagen !== '') {
+        console.log('La imagen no está vacía.');
+      } else {
+        imagenData.imagen = btoa(this.noticias[0].imagen)
+      }
+
+    console.log(imagenData)
+      //logica para la insercion de noticias
+      this.NoticiasService.modificarNoticia(this.noticias[0].idNoticia,imagenData).subscribe(
+        (response) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Noticia eliminada con éxito',
+          }).then(() => {
+            history.back();
+          });
+        },
+        (error) => {
+          console.error('Error al eliminar la noticia:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al eliminar la noticia'+error,
+          }).then(() => {
+            window.location.reload();
+          });
+        }
+      );
+    }
+
   
   //obtencion de imagen y trnasformacion
   onFileSelected(event: any) {

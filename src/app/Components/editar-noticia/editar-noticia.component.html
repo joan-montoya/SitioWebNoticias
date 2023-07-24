@@ -21,7 +21,7 @@
         <div class="col-8" *ngFor="let noticia of noticias">
           <div class="card shadow mb-4">
             <div class="card-body">
-              <button class="btn btn-primary editar">eliminar</button>
+              <button class="btn btn-primary editar" (click)="eliminarNoticia()">eliminar</button>
               <h3 class="card-title">{{ noticia.titulo }}</h3>
               <p class="card-text">{{ noticia.contenido }}</p>
               <img [src]="noticia.imagen" class="card-img-top" alt="Imagen de la noticia" *ngIf="noticia.imagen">
