@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { MiembroService } from 'src/app/Services/miembro.service';
 import { Observable, of  } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { MensajesService } from 'src/app/Services/mensajes.service';
 
 @Component({
   selector: 'app-registro-grupo',
@@ -25,10 +26,16 @@ export class RegistroGrupoComponent implements OnInit {
   form = false;
   miembrosid: any;
   members: any;
+  iduser: any;
+  nombre: any;
+  mensajes: any
+  mostrarContainer: boolean = false;
 
-  constructor(private GruposService: GruposService, private MiembroService: MiembroService) { 
+  constructor(private GruposService: GruposService, private MiembroService: MiembroService, private MensajesService: MensajesService) { 
      // Obtener el idUsuario del localStorage
      const idUsuario = localStorage.getItem('idUsuario');
+     this.iduser = localStorage.getItem('idUsuario');
+     this.nombre = localStorage.getItem('nombreUsuario')
      const idUsuarioNumber = idUsuario ? parseInt(idUsuario, 10) : 0;
      this.user = { idUsuario: idUsuarioNumber };
      this.miembroP = [];
@@ -109,6 +116,7 @@ export class RegistroGrupoComponent implements OnInit {
       );
   }
 
+
   //logica para generar codigo de acceso
   generarCodigoAcceso(): string {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -183,6 +191,38 @@ export class RegistroGrupoComponent implements OnInit {
     } else {
       throw new Error('El contexto del lienzo es nulo.');
     }
+  }
+
+  //logica para solicitar unirse a un grupo
+  solicitudGrupo(grupo: any, idreceptor: any, nombreGrupo: any){
+    const solicitudGrupoData = {
+      emisor: {
+        idUsuario: this.user.idUsuario
+      },
+      receptor: {
+        idUsuario: idreceptor
+      },
+      contenido: "Hola soy "+this.nombre+ ", me gustaria unirme a tu grupo de noticias: "+nombreGrupo,
+      leido: false,
+      grupo: grupo
+    };
+    
+    //logica para la insercion de solicitud
+    //logica de insersion de miembro
+    this.MensajesService.guardarMensaje(solicitudGrupoData).subscribe(
+      (response) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Solicitud enviada',
+          text: 'Tu solicitud para unirte al grupo ha sido enviada.',
+        });
+        
+      },
+      (error) => {
+        console.error('Error al insertar el miembro:', error);
+        // Lógica de manejo de errores
+      }
+    );
   }
 
   seleccionarGrupo(idGrupo: any, id: any) {

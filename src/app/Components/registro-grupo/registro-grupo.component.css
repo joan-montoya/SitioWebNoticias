@@ -70,6 +70,33 @@
   justify-content: center; /* Centrar horizontalmente los elementos en el contenedor */
   height: 30vh; /* Altura para que el contenido se centre en la ventana completa */
 }
+
+/*tamaño de la imagen en boton*/
+.btnf{
+  width: 25px;
+}
+/* Estilo para el botón flotante */
+.btnfloat {
+  position: absolute; /* Hacer que el botón sea posicionado de forma absoluta */
+  top: 10px; /* Ajustar la distancia desde la parte superior */
+  right: 10px; /* Ajustar la distancia desde la parte derecha */
+  z-index: 1; /* Asegurar que el botón se superponga a la imagen */
+  background-color: rgba(91, 245, 19, 0.548);
+  border-color: rgba(55, 148, 12, 0.548);
+  border-radius: 16px;
+  border-width: 3px;
+  backdrop-filter: blur(6.75px);
+}
+/*estilos dobre hover*/
+.btnfloat:hover {
+  box-shadow: 0 8px 12px rgba(78, 122, 28, 0.548);
+  transform: scale(1.10);
+  transition: 250ms;
+}
+.btnfloat:not(:hover) {
+  transition: transform 600ms; /* Transición más lenta solo para la propiedad transform al quitar el hover */
+  transform: scale(1); /* Volver al estado original sin retraso */
+}
 .button-card {
   display: inline-block;
   position: relative;

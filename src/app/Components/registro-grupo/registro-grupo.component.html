@@ -9,6 +9,9 @@
           <div class="horizontal-scroll">
             <div class="grupo-container">
               <div *ngFor="let grupo of grup; let i = index" class="grupo-item">
+                <button class="btn btn-danger btnfloat" (click)="solicitudGrupo(grupo.idGrupo, grupo.idAdministrador, grupo.nombre)">
+                  <img src="../../../assets/agregar-aplicacion.png" class="btnf">
+                </button>
                 <div class="card" (click)="seleccionarGrupo(grupo.idGrupo, i)">
                   <img [src]="grupo.imagen" class="card-img-background">
                   <div class="overlay">

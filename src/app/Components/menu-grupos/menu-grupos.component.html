@@ -1,5 +1,19 @@
 <br>
 <div class="container">
+  <button class="floating-btn" (click)="mostrarMensajes()">Mostrar Mensajes</button>
+  <div class="message-container" [ngClass]="{'show': mostrarContainer}">
+    <div class="message" *ngFor="let mensaje of mensajes">
+      <div class="avatar">
+        <img src="{{ mensaje.emisor.avatar }}" alt="Avatar">
+      </div>
+      <div class="message-content">
+        <p><b>{{ mensaje.emisor.nombreUsuario }}</b><br>
+          {{ mensaje.contenido }}</p>
+        <button class="btn btn-danger" (click)="eliminarMensaje(mensaje.id)">Eliminar</button>
+        <button class="btn btn-success" *ngIf="mensaje.leido  === false" (click)="aceptarMensaje(mensaje.emisor.idUsuario, mensaje.grupo, mensaje.contenido, mensaje.id)">Aceptar</button>
+      </div>
+    </div>
+  </div>
   <div class="row justify-content-center">
     <div class="col-md-12"> 
       <div class="card shadow mb-4" id="cardF">

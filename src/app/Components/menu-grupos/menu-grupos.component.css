@@ -155,4 +155,50 @@
   z-index: 1;
 }
 
+.floating-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+}
+
+.message-container {
+  position: fixed;
+  top: 70px;
+  left: 30px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 10px;
+  display: none;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 9998;
+}
+
+.avatar img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 7px;
+}
+
+.message {
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Estilo para el contenedor de mensajes cuando está visible */
+.message-container.show {
+  display: block;
+}
 

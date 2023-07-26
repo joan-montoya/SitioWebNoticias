@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Miembro } from 'src/app/Models/Miembro';
 import { MiembroService } from 'src/app/Services/miembro.service';
-
+import { MensajesService } from 'src/app/Services/mensajes.service';
 
 @Component({
   selector: 'app-menu-grupos',
@@ -28,8 +28,10 @@ export class MenuGruposComponent implements OnInit {
   gruposNoCoincidentes = [];
   miembrosid: any; 
   members: any;
+  mensajes: any
+  mostrarContainer: boolean = false;
 
-  constructor(private GruposService: GruposService, private MiembroService: MiembroService) { 
+  constructor(private GruposService: GruposService, private MiembroService: MiembroService, private MensajesService: MensajesService) { 
     // Obtener el idUsuario del localStorage
     const idUsuario = localStorage.getItem('idUsuario');
     this.idUsuario = localStorage.getItem('idUsuario');
@@ -44,6 +46,7 @@ export class MenuGruposComponent implements OnInit {
    this.obtenerGrupos()
    this.obtenerMiembros()
    this.obtnerMiem()
+   this.getMensajes()
  }
 
  obtenerMiembros() {
@@ -128,6 +131,103 @@ export class MenuGruposComponent implements OnInit {
        }
      );
  }
+
+   //logica para obtner mensajes
+   getMensajes() {
+    this.MensajesService.obtenerMensajes().subscribe(
+      (response) => {
+        this.mensajes = response.filter((mensaje: any) => mensaje.receptor.idUsuario === this.user.idUsuario),
+        console.log(this.mensajes)
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
+
+  }
+  mostrarMensajes() {
+    this.mostrarContainer = !this.mostrarContainer;
+  }
+
+  //logica de mensajes
+  eliminarMensaje(idmensaje: any) {
+    this.MensajesService.eliminarMensaje(idmensaje).subscribe(
+      (response) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Mensaje eliminado con éxito',
+        }).then(() => {
+          window.location.reload();
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  aceptarMensaje(idusuario: any, grupo: any, nombreGrupo: any, idMensaje:any) {
+    const partes: string[] = nombreGrupo.split(":");
+    const nombreGrupo2: string = partes[1].trim();
+    const miembroData = {
+      usuario: {
+        idUsuario: parseInt(idusuario)
+      },
+      grupo: {
+        idGrupo: parseInt(grupo)
+      },
+    };
+
+    //logica de insersion de miembro
+    this.MiembroService.guardarMiembro(miembroData).subscribe(
+      (response) => {
+        console.log('miembro insertado:', response);
+
+        this.MensajesService.eliminarMensaje(idMensaje).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+
+        const respuestaData = {
+          emisor: {
+            idUsuario: this.user.idUsuario
+          },
+          receptor: {
+            idUsuario: parseInt(idusuario)
+          },
+          contenido: "Fuiste aceptado en el grupo: "+nombreGrupo2,
+          leido: true,
+          grupo: grupo
+        };
+        
+        //logica para la insercion de respuesta
+        this.MensajesService.guardarMensaje(respuestaData).subscribe(
+          (response) => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Miembro aceptado',
+              text: 'Has aceptado a un nuevo miembro en: '+ nombreGrupo2,
+            }).then(() => {
+              window.location.reload();
+            });
+            
+          },
+          (error) => {
+            console.error('Error al insertar el miembro:', error);
+            // Lógica de manejo de errores
+          }
+        );
+        
+      },
+      (error) => {
+        console.error('Error al insertar el miembro:', error);
+        // Lógica de manejo de errores
+      }
+    );
+  }
 
  //logica para la alerta redireccione dentro del grupo
  seleccionarGrupo(nombreGrupo: any, id: any) {
