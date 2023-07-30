@@ -1,6 +1,14 @@
 <br>
 <div class="container">
-  <button class="floating-btn" (click)="mostrarMensajes()">Mostrar Mensajes</button>
+  <!-- Botón con imagen cuando no hay mensajes
+<button class="floating-btn" *ngIf="!mensajes.length" (click)="mostrarMensajes()">
+  <img src="../../../assets/campana.png" alt="Mostrar Mensajes">
+</button>
+
+Botón con imagen cuando hay mensajes -->
+<!-- <button class="floating-btn" *ngIf="mensajes.length" (click)="mostrarMensajes()">
+  <img src="../../../assets/notificacion.png" alt="Ocultar Mensajes">
+</button>
   <div class="message-container" [ngClass]="{'show': mostrarContainer}">
     <div class="message" *ngFor="let mensaje of mensajes">
       <div class="avatar">
@@ -13,7 +21,7 @@
         <button class="btn btn-success" *ngIf="mensaje.leido  === false" (click)="aceptarMensaje(mensaje.emisor.idUsuario, mensaje.grupo, mensaje.contenido, mensaje.id)">Aceptar</button>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="row justify-content-center">
     <div class="col-md-12"> 
       <div class="card shadow mb-4" id="cardF">

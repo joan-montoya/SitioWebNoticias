@@ -24,11 +24,11 @@
           <a class="nav-link" routerLink="/register" style="color: white;">Registrarse</a>
         </div>
       </li>
-      <li class="nav-item" *ngIf="sesionIniciada">
+      <!-- <li class="nav-item" *ngIf="sesionIniciada">
         <div class="send2" *ngIf="sesionIniciada">
          <a class="nav-link" routerLink="/home" style="color: white;">Home</a> 
         </div>
-      </li>
+      </li> -->
       <li class="nav-item" *ngIf="sesionIniciada">
         <div class="send2" *ngIf="sesionIniciada">
           <a class="nav-link" (click)="toggleGrupos()"><b>{{ showGruposOptions ? 'Ocultar grupos' : 'Grupos' }}</b> </a>
@@ -59,6 +59,38 @@
     </ul>
   </div>
 </nav>
+
+  <!-- Botón con imagen cuando no hay mensajes -->
+  <button class="floating-btn" *ngIf="!mensajes.length && sesionIniciada" (click)="mostrarMensajes()">
+    <img src="../../../assets/campana.png" alt="Mostrar Mensajes">
+  </button>
+  
+  <!-- Botón con imagen cuando hay mensajes -->
+  <button class="floating-btn" *ngIf="mensajes.length && sesionIniciada" (click)="mostrarMensajes()">
+    <img src="../../../assets/notificacion.png" alt="Ocultar Mensajes">
+  </button>
+  <div class="message-container" [ngClass]="{'show': mostrarContainer}">
+    <!-- Mensaje cuando no hay mensajes -->
+    <div *ngIf="mensajes.length === 0" class="no-mensajes-message">
+      No hay mensajes por ahora.
+    </div>
+  
+    <!-- Contenido de los mensajes cuando hay mensajes -->
+    <ng-container *ngIf="mensajes.length > 0">
+      <div class="message" *ngFor="let mensaje of mensajes">
+        <div class="avatar">
+          <img src="{{ mensaje.emisor.avatar }}" alt="Avatar">
+        </div>
+        <div class="message-content">
+          <p><b>{{ mensaje.emisor.nombreUsuario }}</b><br>
+            {{ mensaje.contenido }}</p>
+          <button class="btn btn-danger" (click)="eliminarMensaje(mensaje.id)">Eliminar</button>
+          <button class="btn btn-success" *ngIf="!mensaje.leido" (click)="aceptarMensaje(mensaje.emisor.idUsuario, mensaje.grupo, mensaje.contenido, mensaje.id)">Aceptar</button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  
 
 <div class="fon">
   <router-outlet></router-outlet>
